@@ -79,6 +79,13 @@ export default {
         return XpsLogoBlack; // Black logo on white background
       }
       return XpsLogo; // White logo on colored backgrounds
+    },
+    // Compute underline color based on background
+    underlineColor() {
+      if (this.currentRouteName === 'home' && this.isScrolled) {
+        return '#374151'; // Dark underline on white background (gray-700)
+      }
+      return '#FFFFFF'; // White underline on colored backgrounds
     }
   },
   watch: {
@@ -131,7 +138,8 @@ export default {
             text="Inicio" 
             to="/"
             :text-color="textColorClass"
-            underline-color="#FFFFFF"
+            :underline-color="underlineColor"
+            :active-underline-color="underlineColor"
             text-classes="text-sm font-medium"
           />
         </li>
@@ -140,7 +148,8 @@ export default {
             text="Nosotros" 
             to="/about"
             :text-color="textColorClass"
-            underline-color="#FFFFFF"
+            :underline-color="underlineColor"
+            :active-underline-color="underlineColor"
             text-classes="text-sm font-medium"
           />
         </li>
@@ -149,7 +158,8 @@ export default {
             text="Servicios" 
             to="/services"
             :text-color="textColorClass"
-            underline-color="#FFFFFF"
+            :underline-color="underlineColor"
+            :active-underline-color="underlineColor"
             text-classes="text-sm font-medium"
           />
         </li>
@@ -158,7 +168,8 @@ export default {
             text="Proyectos" 
             to="/projects"
             :text-color="textColorClass"
-            underline-color="#FFFFFF"
+            :underline-color="underlineColor"
+            :active-underline-color="underlineColor"
             text-classes="text-sm font-medium"
           />
         </li>

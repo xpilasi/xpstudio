@@ -21,7 +21,7 @@ export default {
     },
     activeUnderlineColor: {
       type: String,
-      default: '#FFFFFF'
+      default: '#FF7949'
     },
     // Animation props
     duration: {
