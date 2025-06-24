@@ -2,18 +2,20 @@
 import { RouterLink } from 'vue-router'
 import XpsLogo from '@/assets/logos/xps-logo.svg'
 import XpsLogoBlack from '@/assets/logos/xps-logo-black.svg'
+import UnderlineLink from '@/components/UnderlineLink.vue'
 
 export default {
   name: 'HeaderComponent',
   data() {
     return {
       isMobileMenuOpen: false,
-      headerBgClass: 'bg-coolPurple' // Default background
+      isScrolled: false // Track scroll state
     };
   },
   components:{
     XpsLogo,
-    XpsLogoBlack
+    XpsLogoBlack,
+    UnderlineLink
   },
   methods: {
     toggleMobileMenu() {
@@ -34,32 +36,87 @@ export default {
         default:
           return 'bg-coolPurple'; // Fallback for other routes or if name is undefined
       }
+    },
+    handleScroll() {
+      // Only apply scroll logic on home page
+      if (this.$route?.name === 'home') {
+        // Get the height of the first section (HeroSection)
+        const heroSection = document.querySelector('section'); // First section
+        if (heroSection) {
+          const heroHeight = heroSection.offsetHeight;
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+          
+          // If scrolled past the hero section, change to white background
+          this.isScrolled = scrollTop > heroHeight - 100; // 100px buffer
+        }
+      }
+    }
+  },
+  computed: {
+    // Get current route name
+    currentRouteName() {
+      return this.$route?.name || 'home';
+    },
+    // Compute the final header classes based on route and scroll state
+    finalHeaderBgClass() {
+      if (this.currentRouteName === 'home' && this.isScrolled) {
+        return 'bg-white shadow-md shadow-slate-200-50'; // White background with shadow when scrolled on home
+      }
+      
+      // Return route-based background immediately
+      return this.getHeaderBgClass(this.currentRouteName);
+    },
+    // Compute text color based on background
+    textColorClass() {
+      if (this.currentRouteName === 'home' && this.isScrolled) {
+        return 'text-gray-800'; // Dark text on white background
+      }
+      return 'text-white'; // White text on colored backgrounds
+    },
+    // Compute logo to use
+    logoComponent() {
+      if (this.currentRouteName === 'home' && this.isScrolled) {
+        return XpsLogoBlack; // Black logo on white background
+      }
+      return XpsLogo; // White logo on colored backgrounds
     }
   },
   watch: {
-    '$route.name': {
-      immediate: true, // Run the watcher immediately on component mount
-      handler(newRouteName) {
-        this.headerBgClass = this.getHeaderBgClass(newRouteName);
+    '$route': {
+      immediate: true,
+      handler() {
+        // Reset scroll state when changing routes (not home)
+        if (this.$route?.name !== 'home') {
+          this.isScrolled = false;
+        }
       }
     }
+  },
+  mounted() {
+    // Add scroll event listener
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    // Remove scroll event listener
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
 
 <style scoped>
 /* Add any header-specific styles here if needed */
-</style> 
+</style>
+
 <template>
-  <header :class="[headerBgClass, 'text-white py-4 px-4 sm:px-6 lg:px-40 relative']">
+  <header :class="[finalHeaderBgClass, textColorClass, 'fixed top-0 left-0 right-0 z-40 py-7 px-4 sm:px-6 lg:px-90']">
     <nav class="container mx-auto flex justify-between items-center">
         <RouterLink to="/">
-          <XpsLogo class="w-20" />
+          <component :is="logoComponent" class="w-20" />
         </RouterLink>
 
       <!-- Hamburger button - visible on lg screens and below -->
       <div class="lg:hidden">
-        <button @click="toggleMobileMenu" class="text-white focus:outline-none">
+        <button @click="toggleMobileMenu" :class="[textColorClass, 'focus:outline-none']">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path v-if="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -69,12 +126,44 @@ export default {
 
       <!-- Desktop Menu - hidden on lg screens and below -->
       <ul class="hidden lg:flex flex-row items-center gap-10 text-sm font-medium">
-        <li><RouterLink to="/" class="hover:text-gray-400 text-white cursor-pointer">Inicio</RouterLink></li>
-        <li><RouterLink to="/about" class="hover:text-gray-400 text-white cursor-pointer">Nosotros</RouterLink></li>
-        <li><RouterLink to="/services" class="hover:text-gray-400 text-white cursor-pointer">Servicios</RouterLink></li>
-        <li><RouterLink to="/projects" class="hover:text-gray-400 text-white cursor-pointer">Proyectos</RouterLink></li>
+        <li>
+          <UnderlineLink 
+            text="Inicio" 
+            to="/"
+            :text-color="textColorClass"
+            underline-color="#FFFFFF"
+            text-classes="text-sm font-medium"
+          />
+        </li>
+        <li>
+          <UnderlineLink 
+            text="Nosotros" 
+            to="/about"
+            :text-color="textColorClass"
+            underline-color="#FFFFFF"
+            text-classes="text-sm font-medium"
+          />
+        </li>
+        <li>
+          <UnderlineLink 
+            text="Servicios" 
+            to="/services"
+            :text-color="textColorClass"
+            underline-color="#FFFFFF"
+            text-classes="text-sm font-medium"
+          />
+        </li>
+        <li>
+          <UnderlineLink 
+            text="Proyectos" 
+            to="/projects"
+            :text-color="textColorClass"
+            underline-color="#FFFFFF"
+            text-classes="text-sm font-medium"
+          />
+        </li>
         <li><RouterLink to="/contact" class="hover:text-gray-400">
-          <div class="bg-redAction text-white px-6 py-2 ">
+          <div class="bg-redAction text-white px-6 py-2">
             <span class="text-sm font-medium">Contáctanos</span>
           </div>
         </RouterLink></li>
