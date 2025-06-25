@@ -115,7 +115,7 @@ export default {
 </style>
 
 <template>
-  <header :class="[finalHeaderBgClass, textColorClass, 'fixed top-0 left-0 right-0 z-40 py-7 px-4 sm:px-6 lg:px-90']">
+  <header :class="[finalHeaderBgClass, textColorClass, 'fixed top-0 left-0 right-0 z-40 py-7 px-4 sm:px-6 lg:px-50 2xl:px-90']">
     <nav class="container mx-auto flex justify-between items-center">
         <RouterLink to="/">
           <component :is="logoComponent" class="w-20" />
@@ -174,7 +174,7 @@ export default {
           />
         </li>
         <li><RouterLink to="/contact" class="hover:text-gray-400">
-          <div class="bg-redAction text-white px-6 py-2">
+          <div :class="currentRouteName === 'contact' ? 'bg-white text-redAction  hover:scale-105 transition-all duration-300' : 'bg-redAction text-white hover:scale-105 transition-all duration-300'" class="px-6 py-2">
             <span class="text-sm font-medium">Contáctanos</span>
           </div>
         </RouterLink></li>

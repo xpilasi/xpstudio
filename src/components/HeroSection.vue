@@ -2,6 +2,9 @@
 import ContactForm from '@/components/ContactForm.vue'
 import HeroContent from '@/components/HeroContent.vue'
 import HeroImage from '@/assets/img/hero-dude.webp'
+import HeroFox from '@/assets/img/fox-cool.png'
+import HeroDude from '@/assets/img/foxy-coool-2.png'
+import HorseCool from '@/assets/img/horse-cool.png'
 
 export default {
   name: 'HeroSection',
@@ -11,7 +14,10 @@ export default {
   },
   data() {
     return {
-      HeroImage
+      HeroImage,
+      HeroFox,
+      HeroDude,
+      HorseCool
     }
   },
   methods: {
@@ -31,9 +37,9 @@ export default {
 
 <template>
   <!-- Hero Section -->
-  <section id="hero-section" class="bg-coolPurple text-white  pt-20 pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen hero-diagonal">
+  <section id="hero-section" class="text-white   pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen hero-diagonal-container">
     <div class="container mx-auto h-full flex flex-col justify-center  lg:mt-14">
-             <div class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-0 items-center  ">
+             <div class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-0 items-center h-full">
         
         <!-- Left Column: Content -->
         <div class="order-1 lg:col-span-4 py-20">
@@ -47,12 +53,9 @@ export default {
         <!-- Right Column: Contact Form (Desktop) / Contact Button (Mobile/Tablet) -->
                  <div class="order-2 lg:col-span-3">
           <!-- Contact Form - Only visible on desktop -->
-          <div class="hidden   lg:flex lg:flex-row justify-end     items-end">
-            <!-- <ContactForm 
-              @form-submitted="handleFormSubmitted"
-              @form-error="handleFormError"
-            /> -->
-            <img :src="HeroImage" alt="Hero Image" class="  object-cover">
+          <div class="hidden lg:flex lg:flex-row justify-center  items-center pt-20 relative z-20" style="height: 80vh;">
+           
+            <img :src="HorseCool" alt="Hero Image" class="object-cover">
           </div>
 
           <!-- Contact Button - Only visible on tablet and mobile -->
@@ -80,11 +83,22 @@ input:focus, textarea:focus {
   outline: none;
 }
 
-/* Diagonal background effect */
-.hero-diagonal {
+/* Diagonal background effect with pseudo-element */
+.hero-diagonal-container {
   position: relative;
   overflow: hidden;
+}
+
+.hero-diagonal-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #AB5CBB; /* coolPurple color */
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  z-index: 1;
   /* Para ajustar la altura de la diagonal en el lado derecho, 
      cambia el valor 80% por:
      - 90% = diagonal más alta (menos corte)
@@ -93,9 +107,14 @@ input:focus, textarea:focus {
      - 70% = diagonal muy baja (mucho corte) */
 }
 
+.hero-diagonal-container > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* For mobile responsiveness */
 @media (max-width: 768px) {
-  .hero-diagonal {
+  .hero-diagonal-container::before {
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
   }
 }

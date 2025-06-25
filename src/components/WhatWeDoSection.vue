@@ -19,7 +19,7 @@ export default {
 
 <template>
   <!-- What We Do Section -->
-  <section class="bg-white py-0 px-4 sm:px-6 lg:px-90">
+  <section class="bg-white py-0 px-4  sm:px-6 lg:px-50 2xl:px-90">
     <div class="container mx-auto">
       
       <!-- Header Section -->
