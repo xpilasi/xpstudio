@@ -31,7 +31,7 @@ export default {
       return this.isInFirstSection ? 'text-white' : 'text-coolPurple'
     },
     indicatorBorderColor() {
-      return this.isInFirstSection ? 'border-white hover:border-coolOrange' : 'border-coolPurple hover:border-coolOrange'
+      return this.isInFirstSection ? 'border-white hover:border-redAction' : 'border-coolPurple hover:border-redAction'
     },
     buttonBackgroundColor() {
       return this.isInFirstSection ? 'bg-white/10' : 'bg-coolPurple/10'
@@ -122,7 +122,7 @@ export default {
         :class="[
           'w-3 h-3 rounded-full border-2 transition-all duration-300 hover:scale-125 cursor-pointer',
           index === currentSectionIndex 
-            ? 'bg-coolOrange border-coolOrange' 
+            ? 'bg-redAction border-redAction' 
             : `bg-transparent ${indicatorBorderColor}`
         ]"
         :title="section.name"
@@ -138,7 +138,7 @@ export default {
         :class="[
           'p-3 rounded-full transition-all duration-300 w-12 h-12 flex items-center justify-center',
           hasPrevSection 
-            ? `${buttonBackgroundColor} backdrop-blur-sm cursor-pointer ${navigationColor} hover:bg-coolOrange hover:text-white hover:scale-110 shadow-lg`
+            ? `${buttonBackgroundColor} backdrop-blur-sm cursor-pointer ${navigationColor} hover:bg-redAction hover:text-white hover:scale-110 shadow-lg`
             : 'opacity-0 cursor-not-allowed'
         ]"
         :title="hasPrevSection ? 'Sección anterior' : ''"
@@ -155,7 +155,7 @@ export default {
         :class="[
           'p-3 rounded-full transition-all duration-300 w-12 h-12 flex items-center justify-center',
           hasNextSection 
-            ? `${buttonBackgroundColor} backdrop-blur-sm cursor-pointer ${navigationColor} hover:bg-coolOrange hover:text-white hover:scale-110 shadow-lg`
+            ? `${buttonBackgroundColor} backdrop-blur-sm cursor-pointer ${navigationColor} hover:bg-redAction hover:text-white hover:scale-110 shadow-lg`
             : 'opacity-0 cursor-not-allowed'
         ]"
         :title="hasNextSection ? 'Siguiente sección' : ''"

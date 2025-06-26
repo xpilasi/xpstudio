@@ -1,8 +1,6 @@
 <script>
+import HeroDude from '@/assets/img/personajes/foxy-coool-2.png'
 import HeroContent from '@/components/HeroContent.vue'
-import HeroDude from '@/assets/img/foxy-coool-2.png'
-import PandaCool from '@/assets/img/panda-cool.png'
-import HorseCool from '@/assets/img/horse-cool.png'
 
 export default {
   name: 'AboutView',
@@ -12,7 +10,6 @@ export default {
   data() {
     return {
       HeroDude,
-      HorseCool
     }
   }
 }
@@ -25,11 +22,11 @@ export default {
         <!-- Left Column: Content -->
         <div class="order-1 lg:col-span-4 py-20">
           <HeroContent
-            pre-title="¿Listo para llevar tu negocio al siguiente nivel?"
+            pre-title="¿Quiénes somos? Apasionados por tu éxito digital."
             pre-title-color="text-black"
-            title="Tu web profesional empieza aquí"
+            title="Somos tu equipo digital."
             title-color="text-redAction"
-            description="Haz crecer tu presencia digital y atrae más clientes."
+            description="Conoce al equipo que lleva tu marca al siguiente nivel."
             description-color="text-black"
           />
         </div>

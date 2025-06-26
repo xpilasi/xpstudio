@@ -1,5 +1,5 @@
 <script>
-import LionHipster from '@/assets/img/lion-girl-hipster.png'
+import LionHipster from '@/assets/img/personajes/leona-hipster2.png'
 import CoolContactForm from '@/components/CoolContactForm.vue'
 
 export default {
@@ -29,7 +29,7 @@ export default {
 
 <template>
   <div class="min-h-screen text-white  hero-diagonal-container">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-20 xl:px-40 py-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-50 2xl:px-90 py-8">
       
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
         
@@ -52,9 +52,9 @@ export default {
         </div>
 
         <!-- Right Column: Image -->
-        <div class="hidden lg:flex justify-center items-center relative z-10 pt-30">
-          <div class=" max-w-md">
-            <img :src="LionHipster" alt="Lion Hipster" class="w-4/5 2xl:w-full object-cover">
+        <div class="hidden lg:flex justify-center items-center relative z-10 lg:pt-20 xl:pt-30 2xl:pt-40">
+          <div class="w-full">
+            <img :src="LionHipster" alt="Lion Hipster" class="w-full h-auto object-cover scale-125 xl:scale-120 2xl:scale-140">
           </div>
         </div>
 

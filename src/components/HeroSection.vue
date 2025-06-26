@@ -1,10 +1,8 @@
     <script>
 import ContactForm from '@/components/ContactForm.vue'
 import HeroContent from '@/components/HeroContent.vue'
-import HeroImage from '@/assets/img/hero-dude.webp'
-import HeroFox from '@/assets/img/fox-cool.png'
-import HeroDude from '@/assets/img/foxy-coool-2.png'
-import HorseCool from '@/assets/img/horse-cool.png'
+import HeroImage from '@/assets/img/img-test-xps.png'
+import HorseCool from '@/assets/img/personajes/horse-cool.png'
 
 export default {
   name: 'HeroSection',
@@ -15,8 +13,6 @@ export default {
   data() {
     return {
       HeroImage,
-      HeroFox,
-      HeroDude,
       HorseCool
     }
   },
@@ -46,6 +42,7 @@ export default {
           <HeroContent
             pre-title="¿Listo para llevar tu negocio al siguiente nivel?"
             title="Tu web profesional empieza aquí"
+            title-color="text-coolYellow"
             description="Haz crecer tu presencia digital y atrae más clientes."
           />
         </div>
