@@ -2,6 +2,9 @@
 import { RouterLink } from 'vue-router'
 import XpsLogo from '@/assets/logos/xps-logo.svg'
 import XpsLogoBlack from '@/assets/logos/xps-logo-black.svg'
+import BestiariLogo from '@/assets/logos/logo-bestiari.svg'
+import BestiariLogoDark from '@/assets/logos/logo-bestiari-dark.svg'
+import IsoBestiari from '@/assets/img/logos/iso-bestiari.svg'
 import UnderlineLink from '@/components/UnderlineLink.vue'
 
 export default {
@@ -9,17 +12,31 @@ export default {
   data() {
     return {
       isMobileMenuOpen: false,
-      isScrolled: false // Track scroll state
+      isScrolled: false // Track scroll state for all routes
     };
   },
   components:{
     XpsLogo,
     XpsLogoBlack,
-    UnderlineLink
+    BestiariLogo,
+    BestiariLogoDark,
+    UnderlineLink,
+    IsoBestiari
   },
   methods: {
     toggleMobileMenu() {
       this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    },
+    handleRouteClick(targetRoute) {
+      // Scroll to top when navigating to a different route
+      if (this.$route.path !== targetRoute) {
+        this.$nextTick(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          })
+        })
+      }
     },
     getHeaderBgClass(routeName) {
       switch (routeName) {
@@ -38,17 +55,14 @@ export default {
       }
     },
     handleScroll() {
-      // Only apply scroll logic on home page
-      if (this.$route?.name === 'home') {
-        // Get the height of the first section (HeroSection)
-        const heroSection = document.querySelector('section'); // First section
-        if (heroSection) {
-          const heroHeight = heroSection.offsetHeight;
-          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          
-          // If scrolled past the hero section, change to white background
-          this.isScrolled = scrollTop > heroHeight - 100; // 100px buffer
-        }
+      // Apply scroll logic to ALL routes
+      const heroSection = document.querySelector('section'); // First section
+      if (heroSection) {
+        const heroHeight = heroSection.offsetHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // If scrolled past the hero section, change to white background
+        this.isScrolled = scrollTop > heroHeight - 100; // 100px buffer
       }
     }
   },
@@ -59,49 +73,72 @@ export default {
     },
     // Compute the final header classes based on route and scroll state
     finalHeaderBgClass() {
-      if (this.currentRouteName === 'home' && this.isScrolled) {
-        return 'bg-white shadow-md shadow-slate-200-50'; // White background with shadow when scrolled on home
+      // Apply white background when scrolled on ANY route
+      if (this.isScrolled) {
+        return 'bg-white shadow-md shadow-slate-200-50'; // White background with shadow when scrolled
       }
       
-      // Return route-based background immediately
+      // Return route-based background when at top
       return this.getHeaderBgClass(this.currentRouteName);
     },
     // Compute text color based on background
     textColorClass() {
-      if (this.currentRouteName === 'home' && this.isScrolled) {
+      // Dark text when scrolled on any route
+      if (this.isScrolled) {
         return 'text-gray-800'; // Dark text on white background
       }
       return 'text-white'; // White text on colored backgrounds
     },
     // Compute logo to use
     logoComponent() {
-      if (this.currentRouteName === 'home' && this.isScrolled) {
-        return XpsLogoBlack; // Black logo on white background
+      // Dark logo when scrolled on any route
+      if (this.isScrolled) {
+        return IsoBestiari; // Black logo on white background
       }
-      return XpsLogo; // White logo on colored backgrounds
+      return BestiariLogo; // White logo on colored backgrounds
     },
     // Compute underline color based on background
     underlineColor() {
-      if (this.currentRouteName === 'home' && this.isScrolled) {
+      // Dark underline when scrolled on any route
+      if (this.isScrolled) {
         return '#374151'; // Dark underline on white background (gray-700)
       }
       return '#FFFFFF'; // White underline on colored backgrounds
+    },
+    // Compute header padding based on scroll state
+    headerPaddingClass() {
+      if (this.isScrolled) {
+        return 'py-0'; // Smaller padding when scrolled
+      }
+      return 'py-7'; // Original padding when at top
+    },
+    // Compute logo size based on scroll state  
+    logoSizeClass() {
+      if (this.isScrolled) {
+        return 'h-7'; // Smaller logo when scrolled (height-based)
+      }
+      return 'h-16'; // Original logo size when at top (height-based)
     }
   },
   watch: {
     '$route': {
       immediate: true,
       handler() {
-        // Reset scroll state when changing routes (not home)
-        if (this.$route?.name !== 'home') {
-          this.isScrolled = false;
-        }
+        // Reset scroll state when changing routes
+        this.isScrolled = false;
+        
+        // Check initial scroll position after route change
+        this.$nextTick(() => {
+          this.handleScroll();
+        });
       }
     }
   },
   mounted() {
     // Add scroll event listener
     window.addEventListener('scroll', this.handleScroll);
+    // Check initial scroll position
+    this.handleScroll();
   },
   beforeUnmount() {
     // Remove scroll event listener
@@ -115,15 +152,20 @@ export default {
 </style>
 
 <template>
-  <header :class="[finalHeaderBgClass, textColorClass, 'fixed top-0 left-0 right-0 z-40 py-7 px-4 sm:px-6 lg:px-50 2xl:px-90']">
-    <nav class="container mx-auto flex justify-between items-center">
-        <RouterLink to="/">
-          <component :is="logoComponent" class="w-20" />
+  <header :class="[
+    finalHeaderBgClass, 
+    textColorClass, 
+    headerPaddingClass,
+    'fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 lg:px-50 2xl:px-90 transition-all duration-300 ease-in-out'
+  ]">
+    <nav class="container mx-auto flex justify-between items-center" :class="isScrolled ? '' : 'min-h-[4rem]'">
+        <RouterLink to="/" class="transition-all duration-300 ease-in-out flex items-center" @click="handleRouteClick('/')">
+          <component :is="logoComponent" :class="[logoSizeClass, 'object-contain']" />
         </RouterLink>
 
       <!-- Hamburger button - visible on lg screens and below -->
       <div class="lg:hidden">
-        <button @click="toggleMobileMenu" :class="[textColorClass, 'focus:outline-none']">
+        <button @click="toggleMobileMenu" :class="[textColorClass, 'focus:outline-none transition-colors duration-300']">
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path v-if="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
             <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -140,7 +182,7 @@ export default {
             :text-color="textColorClass"
             :underline-color="underlineColor"
             :active-underline-color="underlineColor"
-            text-classes="text-sm font-medium"
+            text-classes="text-sm font-medium transition-colors duration-300"
           />
         </li>
         <li>
@@ -150,7 +192,7 @@ export default {
             :text-color="textColorClass"
             :underline-color="underlineColor"
             :active-underline-color="underlineColor"
-            text-classes="text-sm font-medium"
+            text-classes="text-sm font-medium transition-colors duration-300"
           />
         </li>
         <li>
@@ -160,7 +202,7 @@ export default {
             :text-color="textColorClass"
             :underline-color="underlineColor"
             :active-underline-color="underlineColor"
-            text-classes="text-sm font-medium"
+            text-classes="text-sm font-medium transition-colors duration-300"
           />
         </li>
         <li>
@@ -170,10 +212,10 @@ export default {
             :text-color="textColorClass"
             :underline-color="underlineColor"
             :active-underline-color="underlineColor"
-            text-classes="text-sm font-medium"
+            text-classes="text-sm font-medium transition-colors duration-300"
           />
         </li>
-        <li><RouterLink to="/contact" class="hover:text-gray-400">
+        <li><RouterLink to="/contact" class="hover:text-gray-400 transition-all duration-300" @click="handleRouteClick('/contact')">
           <div :class="currentRouteName === 'contact' ? 'bg-white text-redAction  hover:scale-105 transition-all duration-300' : 'bg-redAction text-white hover:scale-105 transition-all duration-300'" class="px-6 py-2">
             <span class="text-sm font-medium">Contáctanos</span>
           </div>
@@ -193,8 +235,8 @@ export default {
       <div v-if="isMobileMenuOpen" class="lg:hidden fixed inset-0 bg-white z-50 flex flex-col p-6">
         <!-- Top Bar: Logo and Close Button -->
         <div class="flex justify-between items-center mb-8">
-          <RouterLink to="/">
-            <XpsLogoBlack class="w-20" />
+          <RouterLink to="/" @click="() => { toggleMobileMenu(); handleRouteClick('/'); }">
+            <BestiariLogoDark class="w-20" />
           </RouterLink>
           <button @click="toggleMobileMenu" class="text-redAction focus:outline-none">
             <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -206,25 +248,25 @@ export default {
         <!-- Navigation Links -->
         <ul class="flex flex-col flex-grow overflow-y-auto">
           <li class="border-b border-gray-200">
-            <RouterLink to="/" @click="toggleMobileMenu" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
+            <RouterLink to="/" @click="() => { toggleMobileMenu(); handleRouteClick('/'); }" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
               <span class="text-lg font-medium">Inicio</span>
               <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
             </RouterLink>
           </li>
           <li class="border-b border-gray-200">
-            <RouterLink to="/about" @click="toggleMobileMenu" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
+            <RouterLink to="/about" @click="() => { toggleMobileMenu(); handleRouteClick('/about'); }" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
               <span class="text-lg font-medium">Nosotros</span>
               <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
             </RouterLink>
           </li>
           <li class="border-b border-gray-200">
-            <RouterLink to="/services" @click="toggleMobileMenu" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
+            <RouterLink to="/services" @click="() => { toggleMobileMenu(); handleRouteClick('/services'); }" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
               <span class="text-lg font-medium">Servicios</span>
               <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
             </RouterLink>
           </li>
           <li class="border-b border-gray-200">
-            <RouterLink to="/projects" @click="toggleMobileMenu" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
+            <RouterLink to="/projects" @click="() => { toggleMobileMenu(); handleRouteClick('/projects'); }" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
               <span class="text-lg font-medium">Proyectos</span>
               <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
             </RouterLink>
@@ -233,7 +275,7 @@ export default {
 
         <!-- Call to Action Button at the bottom -->
         <div class="mt-auto pt-6">
-          <RouterLink to="/contact" @click="toggleMobileMenu" class="block w-full">
+          <RouterLink to="/contact" @click="() => { toggleMobileMenu(); handleRouteClick('/contact'); }" class="block w-full">
             <div class="bg-redAction text-white px-6 py-3 text-center rounded-md font-medium text-lg">
               Contáctanos
             </div>

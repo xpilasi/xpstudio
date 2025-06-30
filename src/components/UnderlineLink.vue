@@ -47,6 +47,19 @@ export default {
     isActive() {
       return this.$route.path === this.to
     }
+  },
+  methods: {
+    handleClick() {
+      // Scroll to top when navigating to a new route
+      if (this.$route.path !== this.to) {
+        this.$nextTick(() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          })
+        })
+      }
+    }
   }
 }
 </script>
@@ -62,6 +75,7 @@ export default {
       '--easing': easing,
       '--underline-height': underlineHeight
     }"
+    @click="handleClick"
   >
     <span class="underline-text" :class="{ 'is-active': isActive }">
       {{ text }}
