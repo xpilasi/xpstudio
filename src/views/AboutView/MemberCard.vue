@@ -136,7 +136,7 @@ export default {
           <div class="font-bold text-xl xl:text-2xl 2xl:text-3xl text-redAction leading-tight">
             {{ memberRole2 }}
           </div>
-          <div class="text-gray-700 font-medium text-base xl:text-lg 2xl:text-xl leading-relaxed mt-4">
+          <div class="text-gray-700 font-normal text-base xl:text-lg 2xl:text-xl leading-relaxed mt-4">
             {{ description }}
           </div>
         </div>

@@ -75,36 +75,32 @@ export default {
           <!-- Question Header -->
           <button
             @click="toggleQuestion(faq.id)"
-            class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-coolPurple focus:ring-inset"
+            class="w-full px-6 py-5 text-left flex justify-between items-center  transition-all duration-300 ease-in-out hover:cursor-pointer "
           >
             <h3 class="text-lg font-semibold text-gray-800 pr-4">
               {{ faq.question }}
             </h3>
             <ChevronDownIcon 
               :class="[
-                'w-5 h-5 text-gray-500 transition-all duration-400 ease-in-out flex-shrink-0',
+                'w-5 h-5 text-gray-500 transition-all duration-400 ease-in-out flex-shrink-0 ',
                 isOpen(faq.id) ? 'transform rotate-180 text-coolPurple' : ''
               ]"
             />
           </button>
 
           <!-- Answer Content -->
-          <transition
-            enter-active-class="transition-all duration-500 ease-out"
-            enter-from-class="opacity-0 transform -translate-y-2"
-            enter-to-class="opacity-100 transform translate-y-0"
-            leave-active-class="transition-all duration-400 ease-in-out"
-            leave-from-class="opacity-100 transform translate-y-0"
-            leave-to-class="opacity-0 transform -translate-y-2"
+          <div 
+            :class="[
+              'accordion-content overflow-hidden transition-all duration-400 ease-in-out',
+              isOpen(faq.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            ]"
           >
-            <div v-if="isOpen(faq.id)" class="overflow-hidden">
-              <div class="px-6 pb-4 pt-2">
-                <p class="text-gray-600 leading-relaxed">
-                  {{ faq.answer }}
-                </p>
-              </div>
+            <div class="px-6 pb-4 pt-2">
+              <p class="text-gray-600 leading-relaxed">
+                {{ faq.answer }}
+              </p>
             </div>
-          </transition>
+          </div>
         </div>
       </div>
 
@@ -130,5 +126,10 @@ export default {
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Accordion content smooth transition */
+.accordion-content {
+  transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
 }
 </style>

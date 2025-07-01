@@ -105,17 +105,17 @@ export default {
       }
       return '#FFFFFF'; // White underline on colored backgrounds
     },
-    // Compute header padding based on scroll state
+    // Compute header padding based on scroll state and mobile
     headerPaddingClass() {
       if (this.isScrolled) {
         return 'py-0'; // Smaller padding when scrolled
       }
-      return 'py-7'; // Original padding when at top
+      return 'py-2 lg:py-7'; // Minimal padding on mobile, original on desktop
     },
     // Compute logo size based on scroll state  
     logoSizeClass() {
       if (this.isScrolled) {
-        return 'h-7'; // Smaller logo when scrolled (height-based)
+        return 'lg:h-7 h-10 p-2 lg:p-0'; // Smaller logo when scrolled (height-based)
       }
       return 'h-14'; // Original logo size when at top (height-based)
     }
@@ -158,7 +158,7 @@ export default {
     headerPaddingClass,
     'fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 lg:px-50 2xl:px-90 transition-all duration-300 ease-in-out'
   ]">
-    <nav class="container mx-auto flex justify-between items-center" :class="isScrolled ? '' : 'min-h-[4rem]'">
+    <nav class="container mx-auto flex justify-between items-center" :class="isScrolled ? '' : 'min-h-[3rem] lg:min-h-[4rem]'">
         <RouterLink to="/" class="transition-all duration-300 ease-in-out flex items-center" @click="handleRouteClick('/')">
           <component :is="logoComponent" :class="[logoSizeClass, 'object-contain']" />
         </RouterLink>
@@ -236,7 +236,7 @@ export default {
         <!-- Top Bar: Logo and Close Button -->
         <div class="flex justify-between items-center mb-8">
           <RouterLink to="/" @click="() => { toggleMobileMenu(); handleRouteClick('/'); }">
-            <BestiariLogoDark class="w-20" />
+            <BestiariLogoDark class="" />
           </RouterLink>
           <button @click="toggleMobileMenu" class="text-redAction focus:outline-none">
             <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

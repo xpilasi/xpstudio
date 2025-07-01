@@ -79,11 +79,11 @@ export default {
       {{ title }}
     </h3>
     
-    <h1 :class="`text-5xl sm:text-6xl md:text-7xl font-bold mb-8 lg:mb-12 ${subtitleColor}`" style="line-height: 0.95; letter-spacing: -3%;">
+    <h1 :class="`text-4xl sm:text-5xl xl:text-6xl font-bold mb-8 lg:mb-12 ${subtitleColor}`" style="line-height: 0.95; letter-spacing: -3%;">
       {{ subtitle }}
     </h1>
     
-    <p :class="`text-xl sm:text-2xl font-medium leading-relaxed max-w-6xl ${descriptionColor}`">
+    <p :class="`text-xl sm:text-2xl font-normal leading-relaxed max-w-6xl ${descriptionColor}`">
       {{ description }}
     </p>
   </div>

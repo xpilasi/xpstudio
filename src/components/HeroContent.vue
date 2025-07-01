@@ -35,7 +35,7 @@ export default {
     },
     titleSize: {
       type: String,
-      default: 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl'
+      default: 'text-5xl sm:text-5xl md:text-6xl lg:text-7xl'
     },
     descriptionSize: {
       type: String,
@@ -84,7 +84,7 @@ export default {
     </h1>
     
     <!-- Description -->
-    <h2 :class="`${descriptionSize} ${descriptionWeight} ${descriptionColor} leading-relaxed ${textAlignment}`">
+    <h2 :class="`hidden lg:block ${descriptionSize} ${descriptionWeight} ${descriptionColor} leading-relaxed ${textAlignment}`">
       {{ description }}
     </h2>
   </div>

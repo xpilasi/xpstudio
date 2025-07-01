@@ -27,6 +27,9 @@ export default {
     isInFirstSection() {
       return this.currentSectionIndex === 0
     },
+    isInLastSection() {
+      return this.currentSectionIndex === this.sections.length - 1
+    },
     navigationColor() {
       return this.isInFirstSection ? 'text-white' : 'text-coolPurple'
     },
@@ -104,6 +107,15 @@ export default {
         this.currentSectionIndex = index
         this.scrollToSection(this.sections[index].id)
       }
+    },
+    handleMobileNavigation() {
+      if (this.isInLastSection) {
+        // Si estamos en la última sección, ir a la primera
+        this.goToSpecificSection(0)
+      } else {
+        // Si no, ir a la siguiente sección
+        this.goToNextSection()
+      }
     }
   }
 }
@@ -174,6 +186,36 @@ export default {
     </div> -->
 
   </div>
+
+  <!-- Mobile Navigator - Solo visible en mobile -->
+  <div class="md:hidden fixed bottom-6 right-6 z-50">
+    <button
+      @click="handleMobileNavigation"
+      class="w-14 h-14 bg-transparent text-redAction rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center backdrop-blur-sm"
+    >
+      <!-- Flecha hacia abajo si no estamos en la última sección -->
+      <svg 
+        v-if="!isInLastSection"
+        class="w-6 h-6 transition-transform duration-300" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
+      
+      <!-- Flecha hacia arriba si estamos en la última sección -->
+      <svg 
+        v-else
+        class="w-6 h-6 transition-transform duration-300" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+      </svg>
+    </button>
+  </div>
 </template>
 
 <style scoped>
@@ -194,10 +236,23 @@ button:disabled {
   pointer-events: none;
 }
 
-/* Hide on mobile for better UX */
+/* Hide desktop navigator on mobile for better UX */
 @media (max-width: 768px) {
-  .fixed {
+  .fixed.right-6.top-1\/2 {
     display: none;
   }
+}
+
+/* Mobile navigator styles */
+.md\:hidden button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.md\:hidden button:hover {
+  transform: scale(1.1);
+}
+
+.md\:hidden button:active {
+  transform: scale(0.95);
 }
 </style> 

@@ -43,7 +43,7 @@ export default {
           </h3>
           
           <!-- Description -->
-          <p class="text-black font-medium text-base sm:text-lg lg:text-lg  leading-relaxed">
+          <p class="text-black font-normal text-base sm:text-lg lg:text-lg  leading-relaxed">
             {{ description }}
           </p>
         </div>

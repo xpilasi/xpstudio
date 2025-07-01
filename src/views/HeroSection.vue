@@ -1,6 +1,7 @@
     <script>
 import ContactForm from '@/components/ContactForm.vue'
 import HeroContent from '@/components/HeroContent.vue'
+import HeroMobile from '@/components/HeroMobile.vue'
 import HeroImage from '@/assets/img/img-test-xps.png'
 import HorseCool from '@/assets/img/personajes/horse-cool.png'
 
@@ -8,7 +9,8 @@ export default {
   name: 'HeroSection',
   components: {
     ContactForm,
-    HeroContent
+    HeroContent,
+    HeroMobile
   },
   data() {
     return {
@@ -33,12 +35,12 @@ export default {
 
 <template>
   <!-- Hero Section -->
-  <section id="hero-section" class="text-white   pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen hero-diagonal-container">
-    <div class="container mx-auto h-full flex flex-col justify-center  lg:mt-14">
-             <div class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-0 items-center h-full">
+  <section id="hero-section" class="text-white px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen hero-diagonal-container">
+    <div class="container mx-auto h-screen flex items-center justify-center">
+      <div class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-0 items-center w-full">
         
         <!-- Left Column: Content -->
-        <div class="order-1 lg:col-span-4 py-20">
+        <div class="order-1 lg:col-span-4 lg:py-20  ">
           <HeroContent
             pre-title="¿Listo para llevar tu negocio al siguiente nivel?"
             title="Tu web profesional empieza aquí"
@@ -47,26 +49,29 @@ export default {
           />
         </div>
 
-        <!-- Right Column: Contact Form (Desktop) / Contact Button (Mobile/Tablet) -->
-                 <div class="order-2 lg:col-span-3">
-          <!-- Contact Form - Only visible on desktop -->
-          <div class="hidden lg:flex lg:flex-row justify-center  items-center pt-30 relative z-20" style="height: 80vh;">
-           
-            <img :src="HorseCool" alt="Hero Image" class="object-cover">
+        <!-- Right Column: Hero Animal Image -->
+        <div class="order-2 lg:col-span-3">
+          <!-- Desktop Version -->
+          <div class="hidden lg:flex lg:flex-row justify-center items-center pt-30 relative z-20" style="height: 80vh;">
+            <img 
+              :src="HorseCool" 
+              alt="Hero Cool Horse" 
+              class="object-cover transition-transform duration-300 hover:scale-105"
+            >
           </div>
 
-          <!-- Contact Button - Only visible on tablet and mobile -->
-          <div class="xl:hidden flex justify-center">
-            <router-link 
-              to="/contact"
-              class="inline-flex items-center justify-center bg-coolOrange text-white py-4 px-8 font-medium text-lg lg:text-xl hover:bg-coolYellow transition-all duration-300 hover:scale-105 shadow-lg"
-            >
-              <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-              Contáctanos
-            </router-link>
-          </div>
+          <!-- Mobile and Tablet Version -->
+          <HeroMobile 
+            :image-url="HorseCool"
+            image-alt="Hero Cool Horse"
+            primary-decor-color="bg-coolYellow"
+            secondary-decor-color="bg-coolOrange"
+            glow-from-color="from-coolYellow/20"
+            glow-to-color="to-coolOrange/20"
+            container-padding="py-0 md:py-12"
+            image-size="h-60 sm:h-56 md:h-64"
+            :enable-hover="true"
+          />
         </div>
 
       </div>

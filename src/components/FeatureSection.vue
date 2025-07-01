@@ -90,7 +90,7 @@ export default {
         
         <!-- Title -->
         <h3 
-          :class="[titleColor, 'text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 lg:mb-6']" 
+          :class="[titleColor, 'text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6']" 
           style="line-height: 0.89; letter-spacing: -3%;"
         >
           {{ titleText }}
@@ -98,7 +98,7 @@ export default {
         
         <!-- Description -->
         <p 
-          :class="[descriptionColor, 'text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal leading-tight']" 
+          :class="[descriptionColor, 'text-lg sm:text-xl lg:text-2xl xl:text-2xl font-normal leading-tight ']" 
           style="letter-spacing: -3%;"
         >
           {{ descriptionText }}

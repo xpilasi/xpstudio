@@ -1,11 +1,13 @@
 <script>
 import HeroDude from '@/assets/img/personajes/foxy-coool-2.png'
 import HeroContent from '@/components/HeroContent.vue'
+import HeroMobile from '@/components/HeroMobile.vue'
 
 export default {
   name: 'HeroAboutSection',
   components: {
-    HeroContent
+    HeroContent,
+    HeroMobile
   },
   data() {
     return {
@@ -16,14 +18,14 @@ export default {
 </script>
 
 <template>
-  <section id="aboutHero" class="bg-coolYellow text-white pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen hero-diagonal">
-    <div class="container mx-auto h-full flex flex-col justify-center lg:mt-14">
-      <div class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-0 items-center h-full">
+  <section id="aboutHero" class="bg-coolYellow text-white px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen hero-diagonal">
+    <div class="container mx-auto h-screen flex items-center justify-center">
+      <div class="grid grid-cols-1 lg:grid-cols-7 gap-8 lg:gap-0 items-center w-full">
         
         <!-- Left Column: Content -->
-        <div class="order-1 lg:col-span-4 py-20">
+        <div class="order-1 lg:col-span-4">
           <HeroContent
-            pre-title="¿Quiénes somos? Apasionados por tu éxito digital."
+            pre-title="¿Quiénes somos?"
             pre-title-color="text-black"
             title="Somos tu equipo digital."
             title-color="text-redAction"
@@ -32,25 +34,25 @@ export default {
           />
         </div>
 
-        <!-- Right Column: Hero Image (Desktop) / Contact Button (Mobile/Tablet) -->
+        <!-- Right Column: Hero Image (Desktop) / Hero Mobile (Mobile/Tablet) -->
         <div class="order-2 lg:col-span-3">
           <!-- Hero Image - Only visible on desktop -->
           <div class="hidden lg:flex lg:flex-row justify-center items-center" style="height: 80vh;">
-            <img :src="HeroDude" alt="Hero Image" class="h-6/7 object-cover">
+            <img :src="HeroDude" alt="Hero Foxy Character" class="h-6/7 object-cover">
           </div>
 
-          <!-- Contact Button - Only visible on tablet and mobile -->
-          <div class="xl:hidden flex justify-center">
-            <router-link 
-              to="/contact"
-              class="inline-flex items-center justify-center bg-coolOrange text-white py-4 px-8 font-medium text-lg lg:text-xl hover:bg-coolYellow transition-all duration-300 hover:scale-105 shadow-lg"
-            >
-              <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-              </svg>
-              Contáctanos
-            </router-link>
-          </div>
+          <!-- Mobile and Tablet Version -->
+          <HeroMobile 
+            :image-url="HeroDude"
+            image-alt="Hero Foxy Character"
+            primary-decor-color="bg-redAction"
+            secondary-decor-color="bg-coolOrange"
+            glow-from-color="from-redAction/20"
+            glow-to-color="to-coolOrange/20"
+            container-padding="py-8 md:py-12"
+            image-size="h-64 sm:h-72 md:h-80"
+            :enable-hover="true"
+          />
         </div>
 
       </div>

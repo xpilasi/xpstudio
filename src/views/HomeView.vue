@@ -1,8 +1,8 @@
 <script>
-import HeroSection from '@/components/HeroSection.vue'
-import WhatWeDoSection from '@/components/WhatWeDoSection.vue'
+import HeroSection from '@/views/HeroSection.vue'
+import WhatWeDoSection from '@/views/WhatWeDoSection.vue'
 import SectionNavigator from '@/components/SectionNavigator.vue'
-import FAQSSmallSection from '@/components/FAQSSmallSection.vue'
+import FAQSSmallSection from '@/views/FAQSSmallSection.vue'
 
 export default {
   name: 'HomeView',
