@@ -39,13 +39,13 @@ export default {
 </script>
 
 <template>
-  <section id="aboutValues" class="min-h-screen bg-white py-12 md:py-16">
+  <section id="aboutValues" class="min-h-screen bg-white py-12 md:py-16  px-4 sm:px-6 lg:px-50 2xl:px-90">
     <div class="flex flex-col justify-center gap-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
       
       <!-- Section Title -->
       <SectionTitle 
         title="Valores" 
-        color="text-[#FFC600]"
+        color="text-coolYellow"
       />
 
       <!-- Values Cards -->

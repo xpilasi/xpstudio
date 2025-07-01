@@ -52,7 +52,7 @@ export default {
         </div>
 
         <!-- Right Column: Image -->
-        <div class="hidden lg:flex justify-center items-center relative z-10 lg:pt-20 xl:pt-30 2xl:pt-40">
+        <div class="hidden lg:flex justify-center items-center relative z-10 lg:pt-20 xl:pt-40 2xl:pt-40">
           <div class="w-full">
             <img :src="LionHipster" alt="Lion Hipster" class="w-full h-auto object-cover scale-125 xl:scale-120 2xl:scale-140">
           </div>

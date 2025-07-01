@@ -50,7 +50,7 @@ export default {
         <!-- Right Column: Contact Form (Desktop) / Contact Button (Mobile/Tablet) -->
                  <div class="order-2 lg:col-span-3">
           <!-- Contact Form - Only visible on desktop -->
-          <div class="hidden lg:flex lg:flex-row justify-center  items-center pt-20 relative z-20" style="height: 80vh;">
+          <div class="hidden lg:flex lg:flex-row justify-center  items-center pt-30 relative z-20" style="height: 80vh;">
            
             <img :src="HorseCool" alt="Hero Image" class="object-cover">
           </div>

@@ -36,7 +36,15 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    // Si hay una posición guardada (como cuando usas el botón atrás), vuelve a esa posición
+    if (savedPosition) {
+      return savedPosition
+    }
+    // Para todas las demás navegaciones, ve al top de la página
+    return { top: 0 }
+  }
 })
 
 export default router 

@@ -117,7 +117,7 @@ export default {
       if (this.isScrolled) {
         return 'h-7'; // Smaller logo when scrolled (height-based)
       }
-      return 'h-16'; // Original logo size when at top (height-based)
+      return 'h-14'; // Original logo size when at top (height-based)
     }
   },
   watch: {

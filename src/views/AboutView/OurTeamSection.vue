@@ -22,7 +22,8 @@ export default {
           memberRole1: 'Ingeniero Comercial U. Diego Portales',
           memberRole2: 'Desarrollador de Software U. Ramón Llul BCN',
           description: 'Apasionado del código y las buenas ideas: con 12 años liderando proyectos y dominio de tecnologías como Vue, Flutter y Firebase, combino negocio y desarrollo para crear soluciones digitales ágiles, funcionales y con estilo.',
-          imageUrl: FotoXavi
+          imageUrl: FotoXavi,
+          linkedinUrl: 'https://www.linkedin.com/in/xavierpilasi/'
         },
         {
           id: 2,
@@ -30,7 +31,8 @@ export default {
           memberRole1: 'HR Senior Consultant',
           memberRole2: 'Senior Project Manager',
           description: 'Apasionado del código y las buenas ideas: con 12 años liderando proyectos y dominio de tecnologías como Vue, Flutter y Firebase, combino negocio y desarrollo para crear soluciones digitales ágiles, funcionales y con estilo.',
-          imageUrl: FotoFer
+          imageUrl: FotoFer,
+          linkedinUrl: 'https://www.linkedin.com/in/fernanda-bravo-luengo/'
         },
       
       ]
@@ -41,7 +43,7 @@ export default {
 
 <template>
   <section id="aboutTeam" class="min-h-screen bg-white py-12 md:py-16 px-4 sm:px-6 lg:px-50 2xl:px-90">
-    <div class="flex flex-col justify-center gap-10 mx-auto">
+    
       
       <!-- Section Title -->
       <SectionTitle 
@@ -57,6 +59,7 @@ export default {
             :memberRole2="values[1].memberRole2"
             :description="values[1].description"
             :imageUrl="values[1].imageUrl"
+            :linkedinUrl="values[1].linkedinUrl"
             align="right"
           /> 
           <MemberCard 
@@ -65,10 +68,11 @@ export default {
             :memberRole2="values[0].memberRole2"
             :description="values[0].description"
             :imageUrl="values[0].imageUrl"
+            :linkedinUrl="values[0].linkedinUrl"
           /> 
           
       </div>
       
-    </div>
+  
   </section>
 </template>

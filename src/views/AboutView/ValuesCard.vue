@@ -20,9 +20,9 @@ export default {
 
 <template>
   <!-- Full-width background -->
-  <div class="flex flex-col py-2 justify-center items-center w-screen min-h-[100px] md:min-h-[200px] lg:min-h-[100px] bg-coolYellow  hover:shadow-2xl transition-all duration-300 ease-in-out -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-[calc(50vw-50%)]">
+  <div class="flex flex-col py-2 justify-center items-center w-screen min-h-[100px] md:min-h-[200px] lg:min-h-[100px] bg-coolYellow  hover:shadow-2xl transition-all duration-300 ease-in-out -mx-4 sm:-mx-6 lg:-mx-50 2xl:-mx-90 xl:-mx-[calc(50vw-50%)]">
     <!-- Content container with margins -->
-    <div class=" flex flex-row justify-center  items-center px-4 sm:px-6 lg:px-8 max-w-7xl py-6 lg:py-3  ">
+    <div class=" flex flex-row justify-center  items-center px-4 sm:px-6 lg:px-30 2xl:px-0 max-w-7xl py-6 lg:py-3  ">
       <div class="flex flex-row items-start gap-2 lg:gap-8 hover:transform hover:-translate-y-1 transition-transform duration-300">
         
         <!-- Icon -->

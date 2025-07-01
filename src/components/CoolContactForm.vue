@@ -1,8 +1,12 @@
 <script>
 import { useCalendly } from '@/composables/useCalendly'
+import CallToAction from '@/components/buttons/CallToActionButton.vue'
 
 export default {
   name: 'CoolContactForm',
+  components: {
+    CallToAction
+  },
   emits: ['form-submitted', 'form-error'],
   setup() {
     const { openCalendlyPopup, buildCalendlyUrl } = useCalendly()
@@ -158,13 +162,14 @@ export default {
 
     <!-- Schedule Meeting Button -->
     <div class="pt-4">
-      <button 
+      <CallToAction 
         @click="scheduleMetering"
-        class="bg-gray-700 cursor-pointer hover:bg-gray-600 text-white font-bold py-4 px-8 text-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
-        type="button"
-      >
-        Agendar Reunión
-      </button>
+        bg-color="bg-gray-700"
+        text-color="text-white"
+        hover-bg-color="hover:bg-gray-600"
+        text="Agendar Reunión"
+        size="medium"
+      />
     </div>
 
   </div>
