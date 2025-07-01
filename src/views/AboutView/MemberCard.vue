@@ -79,7 +79,7 @@ export default {
       
       <!-- Photo + Name Section -->
       <div class="flex flex-col items-center space-y-3">
-        <div class="w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] overflow-hidden rounded-lg">
+        <div class="w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] overflow-hidden rounded-full">
           <img 
             :src="imageUrl" 
             :alt="memberName"
