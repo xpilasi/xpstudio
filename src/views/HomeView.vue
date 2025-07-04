@@ -1,6 +1,7 @@
 <script>
 import HeroSection from '@/views/HeroSection.vue'
 import WhatWeDoSection from '@/views/WhatWeDoSection.vue'
+import AdvantagesSection from '@/views/AdvantagesSection.vue'
 import SectionNavigator from '@/components/SectionNavigator.vue'
 import FAQSSmallSection from '@/views/FAQSSmallSection.vue'
 
@@ -9,6 +10,7 @@ export default {
   components: {
     HeroSection,
     WhatWeDoSection,
+    AdvantagesSection,
     SectionNavigator,
     FAQSSmallSection
   },
@@ -17,9 +19,8 @@ export default {
       sections: [
         { id: 'hero-section', name: 'Inicio' },
         { id: 'what-we-do-header-section', name: '¿Qué hacemos?' },
-        { id: 'feature-soluciones-personalizadas-section', name: 'Soluciones Personalizadas' },
-        { id: 'feature-diseno-responsivo-section', name: 'Diseño Responsivo' },
-        { id: 'feature-foco-usuario-section', name: 'Foco en el Usuario' },
+        { id: 'what-we-do-joker-cards-section', name: 'Nuestros Servicios' },
+        { id: 'advantages-benefits-section', name: 'Ventajas' },
         { id: 'faqs-section', name: 'FAQs' }
       ]
     }
@@ -35,6 +36,9 @@ export default {
 
     <!-- What We Do Section -->
     <WhatWeDoSection />
+
+    <!-- Advantages Section -->
+    <AdvantagesSection />
 
     <!-- FAQs Section -->
     <div id="faqs-section">

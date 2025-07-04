@@ -1,17 +1,60 @@
 <script>
-import FeatureSection from '@/components/FeatureSection.vue'
+import JokerCard from '@/components/JokerCard.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
-import ImgFeature1 from '@/assets/img/img-test-xps.png'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Navigation } from 'swiper/modules'
+import SolucionesPersonalizadasImage from '@/assets/img/what-we-do/wwdo-1.svg?url'
+import DisenoResponsivoImage from '@/assets/img/what-we-do/wwdo-2.svg?url'
+import FocoEnUsuarioImage from '@/assets/img/what-we-do/wwdo-3.svg?url'
+import SectionTop from '@/components/SectionTop.vue'
+
+
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
 export default {
   name: 'WhatWeDoSection',
   components: {
-    FeatureSection,
-    SectionHeader
+    JokerCard,
+    SectionHeader,
+    Swiper,
+    SwiperSlide,
+    SectionTop
   },
   data() {
     return {
-      ImgFeature1
+      modules: [Pagination, Navigation],
+      SolucionesPersonalizadasImage,
+      DisenoResponsivoImage,
+      FocoEnUsuarioImage,
+
+      features: [
+        {
+          id: 'feature-soluciones-personalizadas-section',
+          labelText: 'A la medida',
+          titleText: 'Soluciones personalizadas',
+          descriptionText: 'Trabajo contigo para crear productos que se ajusten a las necesidades únicas de tu negocio y reflejen la esencia de tu marca y tus objetivos.',
+          imageSrc: SolucionesPersonalizadasImage,
+          imageAlt: 'Soluciones personalizadas Illustration'
+        },
+        {
+          id: 'feature-diseno-responsivo-section',
+          labelText: 'Multi-plataforma',
+          titleText: 'Diseño Responsivo',
+          descriptionText: 'Experiencia diseñada para ordenadores, móviles y tablets, todo enfocado en que tus clientes tengan una gran experiencia sin importar el dispositivo.',
+          imageSrc: DisenoResponsivoImage,
+          imageAlt: 'Diseño Responsivo Illustration'
+        },
+        {
+          id: 'feature-foco-usuario-section',
+          labelText: 'UX',
+          titleText: 'Foco en el usuario',
+          descriptionText: 'Interfaces claras y fáciles de usar, para que tus usuarios se sientan cómodos y tomen acción.',
+          imageSrc: FocoEnUsuarioImage,
+          imageAlt: 'Foco en el usuario Illustration'
+        }
+      ]
     }
   }
 }
@@ -19,8 +62,8 @@ export default {
 
 <template>
   <!-- What We Do Section -->
-  <section class="bg-white py-0 px-4  sm:px-6 lg:px-50 2xl:px-90">
-    <div class="container mx-auto">
+  <section class="bg-white py-16 sm:py-20  px-4 sm:px-6 lg:px-50 2xl:px-90">
+    
       
       <!-- Header Section -->
       <SectionHeader
@@ -33,73 +76,144 @@ export default {
         description-color="text-gray-600"
         alignment="center"
         :is-full-screen="true"
-        margin-bottom="mb-16 lg:mb-20"
+        margin-bottom=" "
       />
 
-      <!-- Feature 1: Soluciones Personalizadas -->
-      <div id="feature-soluciones-personalizadas-section" class="h-screen flex items-center">
-        <FeatureSection
-          :image-src="ImgFeature1"
-          image-alt="Soluciones personalizadas XpStudio"
-          label-text="¿Por qué XPS?"
-          title-text="Soluciones Personalizadas"
-          description-text="Trabajo contigo para crear productos que se ajusten a las necesidades únicas de tu negocio y reflejen la esencia de tu marca y tus objetivos."
-          image-position="right"
-          margin-bottom=""
-        />
+      <!-- JokerCards Section -->
+      <div id="what-we-do-joker-cards-section" class="min-h-screen flex flex-col justify-center items-center gap-14 ">
+        <SectionTop
+        header="¿Por qué Bestiari?"
+        title=""
+        header-color="text-coolPurple"
+        subtitle="Utilizamos estándares de la industria con interfaces intuitivas y modernas"
+        description=""
+        title-color="text-gray-600"
+        subtitle-color="text-gray-600"
+        description-color="text-gray-600"
+      ></SectionTop>
+
+        
+        <!-- Desktop Layout: 3 cards in a row -->
+        <div class="hidden lg:flex flex-row gap-8  justify-center items-center max-w-7xl mx-auto px-6 lg:px-8 w-full">
+          <div 
+            v-for="feature in features" 
+            :key="feature.id"
+            :id="feature.id"
+            class="flex justify-center items-center"
+          >
+            <JokerCard
+              :label-text="feature.labelText"
+              :title-text="feature.titleText"
+              :description-text="feature.descriptionText"
+              :image-src="feature.imageSrc"
+              :image-alt="feature.imageAlt"
+            />
+          </div>
+        </div>
+
+        <!-- Mobile/Tablet Layout: Swiper Slider -->
+        <div class="lg:hidden w-full px-4">
+          <Swiper
+            :modules="modules"
+            :slides-per-view="1"
+            :space-between="20"
+            :pagination="{ clickable: true }"
+            :navigation="true"
+            :breakpoints="{
+              640: {
+                slidesPerView: 1.2,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 1.5,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 2,
+                spaceBetween: 40,
+              }
+            }"
+            class="joker-cards-swiper"
+          >
+            <SwiperSlide 
+              v-for="feature in features" 
+              :key="feature.id"
+              class="flex justify-center items-center pb-12"
+            >
+              <JokerCard
+                :label-text="feature.labelText"
+                :title-text="feature.titleText"
+                :description-text="feature.descriptionText"
+                :image-src="feature.imageSrc"
+                :image-alt="feature.imageAlt"
+              />
+            </SwiperSlide>
+          </Swiper>
+        </div>
+        
       </div>
 
-      <!-- Feature 2: Diseño Responsivo -->
-      <div id="feature-diseno-responsivo-section" class="h-screen flex items-center">
-        <FeatureSection
-          :image-src="ImgFeature1"
-          image-alt="Diseño responsivo XpStudio"
-          label-text="Multi-plataforma"
-          title-text="Diseño Responsivo"
-          description-text="Experiencia diseñada para ordenadores, móviles y tablets, todo enfocado en que tus clientes tengan una gran experiencia sin importar el dispositivo."
-          image-position="left"
-          margin-bottom=""
-        />
-      </div>
-
-      <!-- Feature 3: Foco en el usuario -->
-      <div id="feature-foco-usuario-section" class="h-screen flex items-center">
-        <FeatureSection
-          :image-src="ImgFeature1"
-          image-alt="Foco en el usuario UX XpStudio"
-          label-text="UX"
-          title-text="Foco en el usuario"
-          description-text="Interfaces claras y fáciles de usar, para que tus usuarios se sientan cómodos y tomen acción."
-          image-position="right"
-          margin-bottom=""
-        />
-      </div>
-
-    </div>
+   
   </section>
 </template>
 
-<style scoped>
-/* Smooth transitions for hover effects */
-.grid > div {
-  transition: transform 0.3s ease;
+<style>
+/* Swiper custom styles */
+.joker-cards-swiper {
+  padding-bottom: 50px !important;
 }
 
-.grid:hover > div {
-  transform: translateY(-2px);
+.joker-cards-swiper .swiper-pagination {
+  bottom: 10px !important;
 }
 
-/* Ensure proper font rendering for large text */
-h1, h2, h3 {
-  font-feature-settings: "kern" 1;
+.joker-cards-swiper .swiper-pagination-bullet {
+  background: #AB5CBB !important;
+  opacity: 0.3 !important;
+  width: 12px !important;
+  height: 12px !important;
 }
 
-/* Responsive image sizing */
-img {
-  transition: transform 0.3s ease;
+.joker-cards-swiper .swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  transform: scale(1.2) !important;
 }
 
-img:hover {
-  transform: scale(1.02);
+.joker-cards-swiper .swiper-button-next,
+.joker-cards-swiper .swiper-button-prev {
+  color: #AB5CBB !important;
+  font-weight: bold !important;
+  background: white !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.3s ease !important;
 }
-</style> 
+
+.joker-cards-swiper .swiper-button-next:hover,
+.joker-cards-swiper .swiper-button-prev:hover {
+  background: #AB5CBB !important;
+  color: white !important;
+  transform: scale(1.1) !important;
+}
+
+.joker-cards-swiper .swiper-button-next::after,
+.joker-cards-swiper .swiper-button-prev::after {
+  font-size: 18px !important;
+  font-weight: bold !important;
+}
+
+.joker-cards-swiper .swiper-button-disabled {
+  opacity: 0.3 !important;
+}
+
+/* Hide navigation arrows on very small screens */
+@media (max-width: 480px) {
+  .joker-cards-swiper .swiper-button-next,
+  .joker-cards-swiper .swiper-button-prev {
+    display: none !important;
+  }
+}
+</style>
+ 

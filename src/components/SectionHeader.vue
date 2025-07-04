@@ -64,7 +64,7 @@ export default {
       let classes = [this.alignmentClasses, this.marginBottom]
       
       if (this.isFullScreen) {
-        classes.push('h-screen flex flex-col justify-center')
+        classes.push('min-h-screen flex flex-col justify-center')
       }
       
       return classes.join(' ')
