@@ -54,8 +54,19 @@ export default {
 </script>
 
 <template>
-  <section id="aboutValues" class="min-h-screen bg-white py-12 md:py-16  px-4 sm:px-6 lg:px-50 2xl:px-90">
-    <div class="flex flex-col justify-center gap-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+  <section id="aboutValues" class="bg-gradient-to-t from-gray-100 to-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen flex flex-col items-center gap-10 relative overflow-hidden">
+    
+    <!-- Subtle Blurred Circles Background -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <!-- Circle 1 - Top Right -->
+      <div class="absolute z-50 top-1/2 -right-20 w-96 h-96 rounded-full bg-gradient-to-br from-coolYellow to-yellow-200/80 opacity-40 blur-2xl"></div>
+      
+      <!-- Circle 2 - Bottom Left -->
+      <div class="absolute bottom-1/4 -left-10 z-50 w-64 h-64 rounded-full bg-gradient-to-br from-coolYellow to-yellow-200/60 blur-2xl opacity-50"></div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="relative z-10 w-full flex flex-col items-center gap-10">
       
       <!-- Section Title -->
       <SectionTitle 
@@ -64,7 +75,7 @@ export default {
       />
 
       <!-- Desktop Layout - Solo visible en pantallas grandes -->
-      <div class="hidden lg:block space-y-6 lg:space-y-14">
+      <div class="hidden lg:block space-y-6 lg:space-y-14 max-w-7xl mx-auto">
         <ValuesCard
           v-for="value in values"
           :key="value.id"
@@ -75,7 +86,7 @@ export default {
       </div>
 
       <!-- Mobile/Tablet Swiper - Solo visible en pantallas pequeñas y medianas -->
-      <div class="lg:hidden">
+      <div class="lg:hidden w-full">
         <Swiper
           :modules="modules"
           :slides-per-view="1"
@@ -103,8 +114,8 @@ export default {
           </SwiperSlide>
         </Swiper>
       </div>
-      
     </div>
+      
   </section>
 </template>
 

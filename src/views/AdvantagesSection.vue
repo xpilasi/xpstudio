@@ -32,44 +32,33 @@ export default {
         {
           id: 1,
           icon: ClockIcon,
-          title: 'Tiempos de entrega garantizados',
+          title: 'Entregas contínuas',
+          titleColor: 'text-gray-600',
           description: 'Cumplimos con los plazos acordados sin comprometer la calidad. Tu proyecto estará listo cuando lo necesites.',
-          iconBgColor: 'bg-[#AB5CBB]'
+          iconBgColor: 'coolPurple',
+          iconColor: 'text-coolPurple',
+          descriptionColor: 'text-gray-600'
         },
         {
           id: 2,
           icon: UserGroupIcon,
-          title: 'Equipo especializado',
-          description: 'Nuestro equipo multidisciplinario aporta años de experiencia en desarrollo, diseño y estrategia digital.',
-          iconBgColor: 'bg-[#F12E62]'
+          title: 'Visión de negocio  ',
+          titleColor: 'text-gray-600',
+          description: 'No solo desarrollamos tu proyecto: pensamos en cómo este aporta valor real, conecta con clientes y apoya tus objetivos comerciales.', 
+          iconBgColor: 'bg-coolPurple',
+          iconColor: 'text-coolPurple',
+          descriptionColor: 'text-gray-600'
         },
-        // {
-        //   id: 3,
-        //   icon: ChartBarIcon,
-        //   title: 'Resultados medibles',
-        //   description: 'Cada proyecto incluye métricas claras y reportes que demuestran el impacto real de nuestro trabajo.',
-        //   iconBgColor: 'bg-[#FFC600]'
-        // },
-        // {
-        //   id: 4,
-        //   icon: ShieldCheckIcon,
-        //   title: 'Soporte continuo',
-        //   description: 'No terminamos al entregar el proyecto. Te acompañamos con mantenimiento y soporte técnico especializado.',
-        //   iconBgColor: 'bg-[#AB5CBB]'
-        // },
-        // {
-        //   id: 5,
-        //   icon: LightBulbIcon,
-        //   title: 'Innovación constante',
-        //   description: 'Siempre utilizamos las últimas tecnologías y mejores prácticas para que tu solución esté a la vanguardia.',
-        //   iconBgColor: 'bg-[#F12E62]'
-        // },
+   
         {
-          id: 6,
+          id: 3,
           icon: HandThumbUpIcon,
-          title: 'Satisfacción garantizada',
-          description: 'Trabajamos hasta que estés 100% satisfecho. Tu éxito es nuestro objetivo principal.',
-          iconBgColor: 'bg-[#FFC600]'
+          title: 'Tecnología moderna',
+          titleColor: 'text-gray-600',
+          description: 'Usamos las herramientas más actuales para crear webs y apps más rápidas, seguras y listas para escalar junto a tu negocio.',
+          iconBgColor: 'bg-coolPurple',
+          iconColor: 'text-coolPurple',
+          descriptionColor: 'text-gray-600'
         }
       ]
     }
@@ -79,12 +68,27 @@ export default {
 
 <template>
   <!-- Advantages Section -->
-  <section  id="advantages-benefits-section" class="bg-gradient-to-b from-gray-50 to-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen flex flex-col items-center gap-10">
+  <section id="advantages-benefits-section" class="bg-gradient-to-t from-gray-100 to-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen flex flex-col items-center gap-10 relative overflow-hidden">
     
+    <!-- Subtle Blurred Circles Background -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <!-- Circle 1 - Top Left -->
+      <div class="absolute  z-50 top-1/2 -left-20 w-96 h-96 rounded-full bg-gradient-to-br from-coolPurple to-purple-200/80 opacity-40 blur-2xl"></div>
       
- 
+      <!-- Circle 2 - Middle Right -->
+      <!-- <div class="absolute top-1/3 -right-10 z-50 w-64 h-64 rounded-full bg-gradient-to-br from-coolPurple to-purple-200/50 blur-2xl opacity-55"></div> -->
+      
+      <!-- Circle 3 - Bottom Center -->
+      <!-- <div class="absolute top-96 left-2/3 z-50 transform -translate-x-1/2  w-20 h-20 rounded-full bg-gradient-to-br from-coolPurple to-purple-200/60 blur-sm opacity-60"></div> -->
+      
+      <!-- Circle 4 - Bottom Right -->
+      <!-- <div class="absolute top-40 -right-5 z-50 w-64 h-64 rounded-full bg-gradient-to-br from-coolPurple to-purple-200/60 blur-2xl opacity-50"></div> -->
+    </div>
 
-    <SectionTop
+    <!-- Content Container -->
+    <div class="relative z-10 w-full flex flex-col items-center gap-10">
+      
+      <SectionTop
         header="¿Por qué Bestiari?"
         title=""
         header-color="text-coolPurple"
@@ -96,7 +100,7 @@ export default {
       ></SectionTop>
 
       <!-- Benefits Cards Section -->
-      <div  class="flex items-center">
+      <div class="flex items-center">
         
         <!-- Desktop Layout: Grid -->
         <div class="hidden lg:grid lg:grid-cols-3 gap-8 xl:gap-10 w-full max-w-7xl mx-auto">
@@ -105,8 +109,11 @@ export default {
             :key="advantage.id"
             :icon="advantage.icon"
             :title="advantage.title"
+            :title-color="advantage.titleColor"
             :description="advantage.description"
+            :description-color="advantage.descriptionColor"
             :icon-bg-color="advantage.iconBgColor"
+            :icon-color="advantage.iconColor"
           />
         </div>
 
@@ -151,8 +158,7 @@ export default {
           </div>
         </div>
         
-   
-
+      </div>
     </div>
   </section>
 </template>

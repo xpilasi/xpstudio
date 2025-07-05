@@ -89,6 +89,7 @@ input:focus, textarea:focus {
 .hero-diagonal-container {
   position: relative;
   overflow: hidden;
+  background-color: #F5F5F5;
 }
 
 .hero-diagonal-container::before {

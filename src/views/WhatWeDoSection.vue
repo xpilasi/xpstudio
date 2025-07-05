@@ -62,7 +62,7 @@ export default {
 
 <template>
   <!-- What We Do Section -->
-  <section class="bg-white py-16 sm:py-20  px-4 sm:px-6 lg:px-50 2xl:px-90">
+  <section class="bg-gradient-to-b from-gray-100 to-white py-16 sm:py-20  px-4 sm:px-6 lg:px-50 2xl:px-90">
     
       
       <!-- Header Section -->

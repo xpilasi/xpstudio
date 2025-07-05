@@ -55,82 +55,94 @@ export default {
 </script>
 
 <template>
-  <section id="aboutTeam" class="min-h-screen bg-white py-12 md:py-16 px-4 sm:px-6 lg:px-50 2xl:px-90">
+  <section id="aboutTeam" class="bg-gradient-to-b from-gray-100 to-white py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen flex flex-col items-center gap-10 relative overflow-hidden">
     
+    <!-- Subtle Blurred Circles Background -->
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <!-- Circle 1 - Top Left -->
+      <div class="absolute z-50 top-1/4 -left-20 w-96 h-96 rounded-full bg-gradient-to-br from-coolYellow to-yellow-200/80 opacity-40 blur-2xl"></div>
       
-    <!-- Section Title -->
-    <SectionTitle 
-      title="Equipo" 
-      color="text-[#FFC600]"
-    />
-
-    <!-- Desktop Layout - Solo visible en pantallas grandes -->
-    <div class="hidden lg:flex flex-col justify-center gap-20 mx-auto">
-      <MemberCard 
-        :memberName="values[1].memberName"
-        :memberRole1="values[1].memberRole1"
-        :memberRole2="values[1].memberRole2"
-        :description="values[1].description"
-        :imageUrl="values[1].imageUrl"
-        :linkedinUrl="values[1].linkedinUrl"
-        align="right"
-      /> 
-      <MemberCard 
-        :memberName="values[0].memberName"
-        :memberRole1="values[0].memberRole1"
-        :memberRole2="values[0].memberRole2"
-        :description="values[0].description"
-        :imageUrl="values[0].imageUrl"
-        :linkedinUrl="values[0].linkedinUrl"
-      /> 
+      <!-- Circle 2 - Bottom Right -->
+      <div class="absolute bottom-1/4 -right-10 z-50 w-64 h-64 rounded-full bg-gradient-to-br from-coolYellow to-yellow-200/60 blur-2xl opacity-50"></div>
     </div>
 
-    <!-- Mobile/Tablet Swiper - Solo visible en pantallas pequeñas y medianas -->
-    <div class="lg:hidden">
-      <Swiper
-        :modules="modules"
-        :slides-per-view="1"
-        :space-between="20"
-        :autoplay="{
-          delay: 4000,
-          disableOnInteraction: false,
-        }"
-        :pagination="{
-          clickable: true,
-        }"
-        :navigation="true"
-        :loop="true"
-        class="member-swiper"
-      >
-        <!-- Slide para FER (values[1]) -->
-        <SwiperSlide>
-          <div class="w-full h-full flex items-center justify-center py-8">
-            <MemberCard 
-              :memberName="values[1].memberName"
-              :memberRole1="values[1].memberRole1"
-              :memberRole2="values[1].memberRole2"
-              :description="values[1].description"
-              :imageUrl="values[1].imageUrl"
-              :linkedinUrl="values[1].linkedinUrl"
-              align="right"
-            />
-          </div>
-        </SwiperSlide>
+    <!-- Content Container -->
+    <div class="relative z-10 w-full flex flex-col items-center gap-10">
+      
+      <!-- Section Title -->
+      <SectionTitle 
+        title="Equipo" 
+        color="text-coolYellow"
+      />
 
-        <!-- Slide para XAVI (values[0]) -->
-        <SwiperSlide>
-          <div class="w-full h-full flex items-center justify-center py-8">
-            <MemberCard 
-              :memberName="values[0].memberName"
-              :memberRole1="values[0].memberRole1"
-              :memberRole2="values[0].memberRole2"
-              :description="values[0].description"
-              :imageUrl="values[0].imageUrl"
-              :linkedinUrl="values[0].linkedinUrl"
-            />
-          </div>
-        </SwiperSlide>
-      </Swiper>
+      <!-- Desktop Layout - Solo visible en pantallas grandes -->
+      <div class="hidden lg:flex flex-col justify-center gap-20 mx-auto max-w-7xl">
+        <MemberCard 
+          :memberName="values[1].memberName"
+          :memberRole1="values[1].memberRole1"
+          :memberRole2="values[1].memberRole2"
+          :description="values[1].description"
+          :imageUrl="values[1].imageUrl"
+          :linkedinUrl="values[1].linkedinUrl"
+          align="right"
+        /> 
+        <MemberCard 
+          :memberName="values[0].memberName"
+          :memberRole1="values[0].memberRole1"
+          :memberRole2="values[0].memberRole2"
+          :description="values[0].description"
+          :imageUrl="values[0].imageUrl"
+          :linkedinUrl="values[0].linkedinUrl"
+        /> 
+      </div>
+
+      <!-- Mobile/Tablet Swiper - Solo visible en pantallas pequeñas y medianas -->
+      <div class="lg:hidden w-full">
+        <Swiper
+          :modules="modules"
+          :slides-per-view="1"
+          :space-between="20"
+          :autoplay="{
+            delay: 4000,
+            disableOnInteraction: false,
+          }"
+          :pagination="{
+            clickable: true,
+          }"
+          :navigation="true"
+          :loop="true"
+          class="member-swiper"
+        >
+          <!-- Slide para FER (values[1]) -->
+          <SwiperSlide>
+            <div class="w-full h-full flex items-center justify-center py-8">
+              <MemberCard 
+                :memberName="values[1].memberName"
+                :memberRole1="values[1].memberRole1"
+                :memberRole2="values[1].memberRole2"
+                :description="values[1].description"
+                :imageUrl="values[1].imageUrl"
+                :linkedinUrl="values[1].linkedinUrl"
+                align="right"
+              />
+            </div>
+          </SwiperSlide>
+
+          <!-- Slide para XAVI (values[0]) -->
+          <SwiperSlide>
+            <div class="w-full h-full flex items-center justify-center py-8">
+              <MemberCard 
+                :memberName="values[0].memberName"
+                :memberRole1="values[0].memberRole1"
+                :memberRole2="values[0].memberRole2"
+                :description="values[0].description"
+                :imageUrl="values[0].imageUrl"
+                :linkedinUrl="values[0].linkedinUrl"
+              />
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </div>
     </div>
       
   </section>
@@ -159,7 +171,7 @@ export default {
 }
 
 :deep(.swiper-pagination-bullet) {
-  background: #AB5CBB; /* coolPurple */
+  background: #FFC600; /* coolYellow */
   opacity: 0.3;
   width: 12px;
   height: 12px;
@@ -174,7 +186,7 @@ export default {
 /* Navigation arrows styling */
 :deep(.swiper-button-next),
 :deep(.swiper-button-prev) {
-  color: #AB5CBB; /* coolPurple */
+  color: #FFC600; /* coolYellow */
   background: rgba(255, 255, 255, 0.9);
   border-radius: 50%;
   width: 44px;
@@ -202,17 +214,6 @@ export default {
   :deep(.swiper-button-next),
   :deep(.swiper-button-prev) {
     display: none;
-  }
-  
-  .member-swiper {
-    min-height: 550px;
-  }
-}
-
-/* Adjust swiper height for tablets */
-@media (min-width: 481px) and (max-width: 1023px) {
-  .member-swiper {
-    min-height: 650px;
   }
 }
 </style>

@@ -75,17 +75,19 @@ export default {
 
 <template>
   <div :id="sectionId" :class="containerClasses">
-    <h3 :class="`text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 ${titleColor}`">
+    <div class="flex flex-col items-center text-left bg-white p-10 shadow-lg  ">
+    <h3 :class="`w-full text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 ${titleColor}`">
       {{ title }}
     </h3>
     
-    <h1 :class="`text-4xl sm:text-5xl xl:text-6xl font-bold mb-8 lg:mb-12 ${subtitleColor}`" style="line-height: 0.95; letter-spacing: -3%;">
+    <h1 :class="`w-full text-2xl sm:text-3xl xl:text-4xl font-bold mb-8 lg:mb-5 ${subtitleColor}`" style="line-height: 0.95; letter-spacing: -3%;">
       {{ subtitle }}
     </h1>
     
-    <p :class="`text-xl sm:text-2xl font-normal leading-relaxed max-w-6xl ${descriptionColor}`">
+    <p :class="`w-full text-lg sm:text-xl font-light  leading-relaxed max-w-6xl ${descriptionColor}`">
       {{ description }}
     </p>
+    </div>
   </div>
 </template>
 

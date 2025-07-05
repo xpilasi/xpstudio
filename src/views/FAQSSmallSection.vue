@@ -53,7 +53,7 @@ export default {
 </script>
 
 <template>
-  <section class="bg-gray-50 py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen flex flex-col justify-between items-center ">
+  <section class="bg-gradient-to-b from-gray-100  to-white py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-50 2xl:px-90 min-h-screen flex flex-col justify-between items-center ">
     
       
       <!-- Section Title -->
@@ -70,7 +70,7 @@ export default {
         <div 
           v-for="faq in faqs" 
           :key="faq.id"
-          class="bg-white  overflow-hidden"
+          class="bg-white  overflow-hidden shadow-lg"
         >
           <!-- Question Header -->
           <button
@@ -82,7 +82,7 @@ export default {
             </h3>
             <ChevronDownIcon 
               :class="[
-                'w-5 h-5 text-gray-500 transition-all duration-400 ease-in-out flex-shrink-0 ',
+                'w-5 h-5 text-coolPurple transition-all duration-400 ease-in-out flex-shrink-0 ',
                 isOpen(faq.id) ? 'transform rotate-180 text-coolPurple' : ''
               ]"
             />

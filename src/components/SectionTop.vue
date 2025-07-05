@@ -89,7 +89,7 @@ export default {
       <p :class="[
         subtitleColor,
         alignmentClasses,
-        'font-medium text-lg lg:text-[21px] leading-8 font-[\'Poppins\']'
+        'font-light text-lg lg:text-md leading-8 font-[\'Poppins\']'
       ]">
         {{ subtitle }}
       </p>
