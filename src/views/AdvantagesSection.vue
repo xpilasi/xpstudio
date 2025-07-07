@@ -1,5 +1,6 @@
 <script>
 import BenefitsCard from '@/components/BenefitsCard.vue'
+import BenefitsCardMobile from '@/components/BenefitsCardMobile.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
 import SectionTop from '@/components/SectionTop.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -20,6 +21,7 @@ export default {
   name: 'AdvantagesSection',
   components: {
     BenefitsCard,
+    BenefitsCardMobile,
     SectionHeader,
     Swiper,
     SwiperSlide,
@@ -147,7 +149,7 @@ export default {
                 :key="advantage.id"
                 class="h-auto"
               >
-                <BenefitsCard
+                <BenefitsCardMobile
                   :icon="advantage.icon"
                   :title="advantage.title"
                   :description="advantage.description"

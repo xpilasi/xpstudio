@@ -75,8 +75,8 @@ export default {
 
 <template>
   <div :id="sectionId" :class="containerClasses">
-    <div class="flex flex-col items-center text-left bg-white p-10 shadow-lg  ">
-    <h3 :class="`w-full text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 ${titleColor}`">
+    <div class="flex flex-col items-center text-left p-10 shadow-lg  ">
+    <h3 :class="`w-full text-xl sm:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 ${titleColor}`">
       {{ title }}
     </h3>
     
@@ -84,7 +84,7 @@ export default {
       {{ subtitle }}
     </h1>
     
-    <p :class="`w-full text-lg sm:text-xl font-light  leading-relaxed max-w-6xl ${descriptionColor}`">
+    <p :class="`w-full text-md sm:text-xl font-light  lg:leading-relaxed max-w-6xl ${descriptionColor}`">
       {{ description }}
     </p>
     </div>

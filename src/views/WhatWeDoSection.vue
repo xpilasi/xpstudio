@@ -1,5 +1,7 @@
 <script>
 import JokerCard from '@/components/JokerCard.vue'
+import JokerCardHorizontal from '@/components/JokerCardHorizontal.vue'
+import JokerCardMobile from '@/components/JokerCardMobile.vue'
 import SectionHeader from '@/components/SectionHeader.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Pagination, Navigation } from 'swiper/modules'
@@ -17,6 +19,8 @@ export default {
   name: 'WhatWeDoSection',
   components: {
     JokerCard,
+    JokerCardHorizontal,
+    JokerCardMobile,
     SectionHeader,
     Swiper,
     SwiperSlide,
@@ -94,14 +98,14 @@ export default {
 
         
         <!-- Desktop Layout: 3 cards in a row -->
-        <div class="hidden lg:flex flex-row gap-8  justify-center items-center max-w-7xl mx-auto px-6 lg:px-8 w-full">
+        <div class="hidden lg:flex flex-col gap-8  justify-center items-center max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <div 
             v-for="feature in features" 
             :key="feature.id"
             :id="feature.id"
             class="flex justify-center items-center"
           >
-            <JokerCard
+            <JokerCardHorizontal
               :label-text="feature.labelText"
               :title-text="feature.titleText"
               :description-text="feature.descriptionText"
@@ -140,7 +144,7 @@ export default {
               :key="feature.id"
               class="flex justify-center items-center pb-12"
             >
-              <JokerCard
+              <JokerCardMobile
                 :label-text="feature.labelText"
                 :title-text="feature.titleText"
                 :description-text="feature.descriptionText"

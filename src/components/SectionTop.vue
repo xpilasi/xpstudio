@@ -61,7 +61,7 @@ export default {
 </script>
 
 <template>
-  <div :class="[maxWidth, 'mx-auto px-4 sm:px-6 lg:px-8']">
+  <div :class="[maxWidth, 'mx-auto px-4 sm:px-6 lg:px-8 ']">
     <div :class="[spacing, alignmentClasses]">
       
       <!-- Header Text -->
@@ -73,14 +73,14 @@ export default {
       <h2 :class="[
         titleColor,
         alignmentClasses,
-        'font-bold text-2xl lg:text-[27px] leading-6 font-[\'Poppins\']'
+        'font-bold text-2xl lg:text-[27px] leading-6'
       ]">
         {{ title }}
       </h2>
       <h3 :class="[
         headerColor,
         alignmentClasses,
-        'font-bold text-3xl lg:text-[36px] leading-6 font-[\'Poppins\']]'
+        'font-bold text-3xl lg:text-4xl lg:mb-4 leading-6 text-start lg:text-center '
       ]">
         {{ header }}
       </h3>
@@ -89,7 +89,7 @@ export default {
       <p :class="[
         subtitleColor,
         alignmentClasses,
-        'font-light text-lg lg:text-md leading-8 font-[\'Poppins\']'
+        'font-light text-md lg:text-lg lg:leading-8 text-start lg:text-center'
       ]">
         {{ subtitle }}
       </p>

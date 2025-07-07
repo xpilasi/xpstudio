@@ -1,4 +1,4 @@
-<script>
+        <script>
 export default {
   name: 'BenefitsCard',
   props: {
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <template>
-  <div class="backdrop-blur-sm shadow-lg   bg-white/70  p-6 transition-all duration-300 ease-in-out h-full flex flex-col items-center text-center max-w-sm mx-auto">
+  <div class="backdrop-blur-sm shadow-lg   bg-red-400  p-6 transition-all duration-300 ease-in-out h-full flex flex-col items-center text-center max-w-sm mx-auto">
     
     <!-- Icon Container -->
     <div class="mb-8 w-full ">

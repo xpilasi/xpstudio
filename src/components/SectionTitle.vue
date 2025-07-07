@@ -32,7 +32,7 @@ export default {
 
 <template>
   <div class="py-8">
-    <h2 :class="`${size} font-extrabold ${color}  ${alignment}`">
+    <h2 :class="`${size} font-extrabold ${color}  ${alignment} bg-green-500`">
       {{ title }}
     </h2>
   </div>
