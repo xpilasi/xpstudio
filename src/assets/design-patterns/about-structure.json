@@ -1,0 +1,46 @@
+{
+    "title": "¿Quiénes somos?",
+    "intro": {
+      "heading": "Personas reales, soluciones reales",
+      "text": "Somos un equipo pequeño pero versátil. Nos enfocamos en ofrecer soluciones digitales que aporten valor real a cada cliente."
+    },
+    "team": {
+      "heading": "El equipo",
+      "members": [
+        {
+          "name": "Xavi",
+          "role": "Desarrollador",
+          "description": "Construyo sitios rápidos, seguros y listos para escalar. Cada línea de código está pensada para mejorar la experiencia del usuario.",
+          "image": "xavi.jpg"
+        },
+        {
+          "name": "Fer",
+          "role": "Project Manager",
+          "description": "Me encargo de que todo fluya. Escucho, planifico y conecto necesidades con soluciones digitales efectivas.",
+          "image": "fer.jpg"
+        }
+      ]
+    },
+    "whyUs": {
+      "heading": "¿Por qué trabajar con nosotres?",
+      "reasons": [
+        {
+          "title": "Trato directo",
+          "text": "Sin intermediarios ni jerarquías. Hablas con quienes ejecutan el proyecto."
+        },
+        {
+          "title": "Compromiso real",
+          "text": "Nos implicamos como si el proyecto fuera nuestro. Solo tomamos lo que podemos entregar con calidad."
+        },
+        {
+          "title": "Soluciones pensadas",
+          "text": "No solo hacemos lo que se pide, proponemos lo que funciona mejor para tus objetivos."
+        }
+      ]
+    },
+    "cta": {
+      "text": "¿Quieres conocernos mejor?",
+      "button": "Contáctanos"
+    }
+  }
+  

@@ -5,7 +5,7 @@
         <!-- Column 1: Brand/Company -->
         <div class="col-span-1 md:col-span-2 lg:col-span-1 text-center md:text-left flex flex-col justify-between items-center md:items-start">
           <RouterLink to="/">
-            <XpsLogo class="lg:w-50 w-30 pb-5 lg:pb-0 mx-auto md:mx-0" />
+            <BestiariLogo class="lg:w-50 w-30 pb-5 lg:pb-0 mx-auto md:mx-0" />
           </RouterLink>
           <p class="text-sm mb-4">
             Haciendo el mundo un lugar mejor a través de código elegante y diseño intuitivo.
@@ -72,12 +72,14 @@
 
 <script>
 import XpsLogo from '@/assets/logos/xps-logo.svg'
+import BestiariLogo from '@/assets/logos/logo-bestiari.svg'
 // import XpsLogoBlack from '@/assets/logos/xps-logo-black.svg' // Assuming XpsLogoBlack is not used in the translated version directly or it's handled elsewhere
 
 export default {
   name: 'FooterComponent',
   components:{
     XpsLogo,
+    BestiariLogo,
     // XpsLogoBlack // Ensure this is needed or remove if not
   }
 }

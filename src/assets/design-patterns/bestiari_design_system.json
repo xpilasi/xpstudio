@@ -1,0 +1,235 @@
+{
+  "design_system": {
+    "name": "Bestiari Modern Web Design System",
+    "version": "1.0",
+    "style_category": "Modern SaaS/Agency",
+    "overall_aesthetic": "Clean, professional, with vibrant accents and modern typography"
+  },
+  "color_palette": {
+    "primary": {
+      "purple": "#8B5CF6",
+      "description": "Vibrant purple used for hero sections and primary CTAs"
+    },
+    "secondary": {
+      "light_purple": "#C4B5FD",
+      "description": "Lighter purple for backgrounds and subtle accents"
+    },
+    "neutrals": {
+      "white": "#FFFFFF",
+      "light_gray": "#F8F9FA",
+      "medium_gray": "#6B7280",
+      "dark_gray": "#374151",
+      "black": "#1F2937"
+    },
+    "accent": {
+      "yellow": "#F59E0B",
+      "description": "Used for highlighting important text and CTAs"
+    }
+  },
+  "typography": {
+    "hierarchy": {
+      "hero_title": {
+        "size": "48-64px",
+        "weight": "700-800",
+        "line_height": "1.1",
+        "color": "white or yellow accent"
+      },
+      "section_title": {
+        "size": "32-40px",
+        "weight": "600-700",
+        "line_height": "1.2",
+        "color": "dark_gray"
+      },
+      "subtitle": {
+        "size": "18-24px",
+        "weight": "500-600",
+        "line_height": "1.4",
+        "color": "purple or dark_gray"
+      },
+      "body": {
+        "size": "16-18px",
+        "weight": "400-500",
+        "line_height": "1.6",
+        "color": "medium_gray"
+      },
+      "small_text": {
+        "size": "14px",
+        "weight": "400",
+        "line_height": "1.5",
+        "color": "medium_gray"
+      }
+    },
+    "font_style": "Modern sans-serif (likely Inter, Poppins, or similar)",
+    "characteristics": [
+      "Clean and readable",
+      "Good contrast ratios",
+      "Consistent weight usage",
+      "Proper hierarchy with size and weight variations"
+    ]
+  },
+  "layout_structure": {
+    "header": {
+      "style": "Fixed/sticky navigation",
+      "elements": ["logo", "navigation_menu", "cta_button"],
+      "background": "Transparent or semi-transparent",
+      "alignment": "Space between logo and nav items"
+    },
+    "hero_section": {
+      "background": "Gradient purple",
+      "layout": "Two-column (text left, illustration right)",
+      "elements": ["headline", "subheadline", "cta_button", "hero_image"],
+      "padding": "Large vertical spacing"
+    },
+    "content_sections": {
+      "background": "Alternating white and light gray",
+      "layout": "Center-aligned with max-width container",
+      "spacing": "Generous vertical padding between sections"
+    },
+    "footer": {
+      "background": "Dark (navy/black)",
+      "layout": "Multi-column grid",
+      "elements": ["company_info", "links", "social_icons"]
+    }
+  },
+  "component_patterns": {
+    "cards": {
+      "style": "Clean white background with subtle shadow",
+      "border_radius": "8-12px",
+      "shadow": "Subtle drop shadow",
+      "padding": "24-32px",
+      "hover_effect": "Subtle lift or border color change"
+    },
+    "buttons": {
+      "primary": {
+        "background": "Purple gradient or solid",
+        "text_color": "White",
+        "border_radius": "6-8px",
+        "padding": "12-16px horizontal, 8-12px vertical",
+        "hover_effect": "Darker shade or scale transform"
+      },
+      "secondary": {
+        "background": "Transparent or white",
+        "text_color": "Purple",
+        "border": "1-2px solid purple",
+        "hover_effect": "Background fill with purple"
+      }
+    },
+    "icons": {
+      "style": "Simple line icons or minimal filled icons",
+      "size": "24-32px typically",
+      "color": "Purple or matching section theme"
+    },
+    "feature_sections": {
+      "layout": "Grid layout (2-3 columns)",
+      "alignment": "Center-aligned text and icons",
+      "spacing": "Equal spacing between items"
+    }
+  },
+  "visual_elements": {
+    "illustrations": {
+      "style": "Modern, flat or semi-flat illustrations",
+      "color_scheme": "Matching brand colors",
+      "placement": "Hero sections and feature explanations"
+    },
+    "gradients": {
+      "primary": "Purple gradient (lighter to darker purple)",
+      "usage": "Hero backgrounds, buttons, accent elements"
+    },
+    "spacing": {
+      "system": "Consistent spacing scale (likely 8px base)",
+      "sections": "Large vertical gaps between major sections",
+      "elements": "Moderate spacing between related elements"
+    }
+  },
+  "interaction_patterns": {
+    "navigation": {
+      "style": "Horizontal menu with hover effects",
+      "mobile": "Likely hamburger menu",
+      "active_states": "Color change or underline"
+    },
+    "hover_effects": {
+      "buttons": "Color darkening or scaling",
+      "cards": "Subtle lift with shadow increase",
+      "links": "Color change to purple"
+    },
+    "animations": {
+      "style": "Subtle and smooth transitions",
+      "duration": "0.2-0.3 seconds typically",
+      "easing": "Smooth ease-in-out"
+    }
+  },
+  "responsive_design": {
+    "approach": "Mobile-first responsive design",
+    "breakpoints": {
+      "mobile": "up to 768px",
+      "tablet": "768px to 1024px",
+      "desktop": "1024px and above"
+    },
+    "adaptations": {
+      "hero": "Stack text above image on mobile",
+      "cards": "Single column on mobile, grid on desktop",
+      "navigation": "Hamburger menu on mobile"
+    }
+  },
+  "content_structure": {
+    "sections": [
+      {
+        "name": "Hero",
+        "purpose": "Primary value proposition with strong CTA",
+        "elements": ["headline", "subheadline", "cta_button", "hero_visual"]
+      },
+      {
+        "name": "Services/What We Do",
+        "purpose": "Explain main services or offerings",
+        "layout": "Text introduction followed by feature cards"
+      },
+      {
+        "name": "Why Choose Us",
+        "purpose": "Differentiation and value propositions",
+        "layout": "Icon + text combinations in grid"
+      },
+      {
+        "name": "Process/How It Works",
+        "purpose": "Explain methodology or approach",
+        "layout": "Sequential steps or feature highlights"
+      },
+      {
+        "name": "FAQ",
+        "purpose": "Address common questions",
+        "layout": "Expandable/collapsible question format"
+      },
+      {
+        "name": "Contact/CTA",
+        "purpose": "Drive conversions",
+        "layout": "Prominent CTA button with supporting text"
+      }
+    ]
+  },
+  "best_practices": {
+    "accessibility": [
+      "High contrast ratios",
+      "Readable font sizes",
+      "Proper heading hierarchy",
+      "Alt text for images"
+    ],
+    "performance": [
+      "Optimized images",
+      "Minimal JavaScript",
+      "Clean CSS structure",
+      "Fast loading times"
+    ],
+    "usability": [
+      "Clear navigation",
+      "Obvious CTAs",
+      "Consistent interactions",
+      "Mobile-friendly touch targets"
+    ]
+  },
+  "implementation_notes": {
+    "css_framework": "Likely Tailwind CSS or custom CSS with utility classes",
+    "javascript": "Minimal JavaScript for interactions",
+    "animations": "CSS transitions and transforms",
+    "images": "WebP format for optimization",
+    "fonts": "Web fonts loaded efficiently"
+  }
+}

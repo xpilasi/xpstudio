@@ -1,36 +1,38 @@
 <script>
-import HeroDude from '@/assets/img/personajes/foxy-coool-2.png'
-import HeroContent from '@/components/HeroContent.vue'
-import OurTeamSection from './OurTeamSection.vue'
-import HeroAboutSection from './HeroAboutSection.vue'
+import AboutIntroSection from './AboutIntroSection.vue'
+import AboutTeamSection from './AboutTeamSection.vue'
+import AboutWhyUsSection from './AboutWhyUsSection.vue'
+import AboutCTASection from './AboutCTASection.vue'
 import SectionNavigator from '@/components/SectionNavigator.vue'
-import OurValuesSection from './OurValuesSection.vue'
 
 export default {
   name: 'AboutView',
   components: {
-    HeroContent,
-    OurTeamSection,
-    HeroAboutSection,
-    SectionNavigator,
-    OurValuesSection
+    AboutIntroSection,
+    AboutTeamSection,
+    AboutWhyUsSection,
+    AboutCTASection,
+    SectionNavigator
   },
   data() {
     return {
-      HeroDude,
       aboutSections: [
         {
-          id: 'aboutHero',
+          id: 'about-intro',
           name: 'Inicio'
         },
-          {
-            id: 'aboutTeam',
-            name: 'Equipo'
-          },
-          {
-            id: 'aboutValues',
-            name: 'Valores'
-          }
+        {
+          id: 'about-team',
+          name: 'Equipo'
+        },
+        {
+          id: 'about-why-us',
+          name: '¿Por qué nosotros?'
+        },
+        {
+          id: 'about-cta',
+          name: 'Contacto'
+        }
       ]
     }
   }
@@ -39,14 +41,25 @@ export default {
 
 <template>
   <div class="min-h-screen">
-    <!-- Hero Section -->
-    <HeroAboutSection />
+    <!-- About Intro Section -->
+    <div id="about-intro">
+      <AboutIntroSection />
+    </div>
     
-    <!-- Our Team Section -->
-    <OurTeamSection />
+    <!-- About Team Section -->
+    <div id="about-team">
+      <AboutTeamSection />
+    </div>
 
-    <!-- Our Values Section -->
-    <OurValuesSection />
+    <!-- About Why Us Section -->
+    <div id="about-why-us">
+      <AboutWhyUsSection />
+    </div>
+
+    <!-- About CTA Section -->
+    <div id="about-cta">
+      <AboutCTASection />
+    </div>
 
     <!-- Section Navigator -->
     <SectionNavigator :sections="aboutSections" />
