@@ -1,26 +1,27 @@
 <script>
 import HeroSection from '@/views/HeroSection.vue'
 import WhatWeDoSection from '@/views/WhatWeDoSection.vue'
-import AdvantagesSection from '@/views/AdvantagesSection.vue'
+import BenefitsSection from '@/views/BenefitsSection.vue'
 import SectionNavigator from '@/components/SectionNavigator.vue'
 import FAQSSmallSection from '@/views/FAQSSmallSection.vue'
-
+import PresentationSection from '@/views/Presentation.vue'
 export default {
   name: 'HomeView',
   components: {
     HeroSection,
     WhatWeDoSection,
-    AdvantagesSection,
+    BenefitsSection,
     SectionNavigator,
-    FAQSSmallSection
+    FAQSSmallSection,
+    PresentationSection
   },
   data() {
     return {
       sections: [
         { id: 'hero-section', name: 'Inicio' },
-        { id: 'what-we-do-header-section', name: '¿Qué hacemos?' },
+        { id: 'presentation-section', name: 'Presentación' },
         { id: 'what-we-do-joker-cards-section', name: 'Nuestros Servicios' },
-        { id: 'advantages-benefits-section', name: 'Ventajas' },
+        { id: 'advantages-benefits-section', name: '¿Por qué Bestiari?' },
         { id: 'faqs-section', name: 'FAQs' }
       ]
     }
@@ -34,11 +35,12 @@ export default {
     <!-- Hero Section -->
     <HeroSection />
 
+    <PresentationSection />
+
     <!-- What We Do Section -->
     <WhatWeDoSection />
 
-    <!-- Advantages Section -->
-    <AdvantagesSection />
+    <BenefitsSection />
 
     <!-- FAQs Section -->
     <div id="faqs-section">

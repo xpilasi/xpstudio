@@ -64,7 +64,7 @@ export default {
       let classes = [this.alignmentClasses, this.marginBottom]
       
       if (this.isFullScreen) {
-        classes.push('min-h-screen flex flex-col justify-center')
+        classes.push('min-h-screen flex flex-col justify-center bg-blue-300')
       }
       
       return classes.join(' ')
@@ -74,8 +74,8 @@ export default {
 </script>
 
 <template>
-  <div :id="sectionId" :class="containerClasses">
-    <div class="flex flex-col items-center text-left p-10 shadow-lg  ">
+  
+    <div class="flex flex-col bg-white items-center text-left p-10 shadow-lg  ">
     <h3 :class="`w-full text-xl sm:text-4xl lg:text-5xl font-bold mb-6 lg:mb-8 ${titleColor}`">
       {{ title }}
     </h3>
@@ -88,7 +88,7 @@ export default {
       {{ description }}
     </p>
     </div>
-  </div>
+  
 </template>
 
 <style scoped>

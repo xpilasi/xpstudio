@@ -6,13 +6,23 @@ import BestiariLogo from '@/assets/logos/logo-bestiari.svg'
 import BestiariLogoDark from '@/assets/logos/logo-bestiari-dark.svg'
 import IsoBestiari from '@/assets/img/logos/iso-bestiari.svg'
 import UnderlineLink from '@/components/UnderlineLink.vue'
+import LinkMenuMobileWidget from '@/components/LinkMenuMobileWidget.vue'
 
 export default {
   name: 'HeaderComponent',
   data() {
     return {
       isMobileMenuOpen: false,
-      isScrolled: false // Track scroll state for all routes
+      isScrolled: false, // Track scroll state for all routes
+      isHeaderVisible: true, // Track header visibility for auto-hide
+      lastScrollY: 0, // Track last scroll position
+      scrollThreshold: 100, // Minimum scroll distance before hiding header
+      navigationLinks: [
+        { text: 'Inicio', to: '/' },
+        { text: 'Nosotros', to: '/about' },
+        { text: 'Servicios', to: '/services' },
+        { text: 'Proyectos', to: '/projects' }
+      ]
     };
   },
   components:{
@@ -21,7 +31,8 @@ export default {
     BestiariLogo,
     BestiariLogoDark,
     UnderlineLink,
-    IsoBestiari
+    IsoBestiari,
+    LinkMenuMobileWidget
   },
   methods: {
     toggleMobileMenu() {
@@ -37,6 +48,10 @@ export default {
           })
         })
       }
+    },
+    handleMobileLinkClick(targetRoute) {
+      this.toggleMobileMenu();
+      this.handleRouteClick(targetRoute);
     },
     getHeaderBgClass(routeName) {
       switch (routeName) {
@@ -57,13 +72,38 @@ export default {
     handleScroll() {
       // Apply scroll logic to ALL routes
       const heroSection = document.querySelector('section'); // First section
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      
       if (heroSection) {
         const heroHeight = heroSection.offsetHeight;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         // If scrolled past the hero section, change to white background
-        this.isScrolled = scrollTop > heroHeight - 100; // 100px buffer
+        this.isScrolled = currentScrollY > heroHeight - 100; // 100px buffer
       }
+
+      // Auto-hide header logic (only if mobile menu is not open)
+      if (!this.isMobileMenuOpen) {
+        const scrollDifference = currentScrollY - this.lastScrollY;
+
+        // Always show header when at top of page
+        if (currentScrollY <= this.scrollThreshold) {
+          this.isHeaderVisible = true;
+        }
+        // Hide header when scrolling down
+        else if (scrollDifference > 5 && currentScrollY > this.scrollThreshold) {
+          this.isHeaderVisible = false;
+        }
+        // Show header when scrolling up
+        else if (scrollDifference < -5) {
+          this.isHeaderVisible = true;
+        }
+      } else {
+        // Always show header when mobile menu is open
+        this.isHeaderVisible = true;
+      }
+
+      // Update last scroll position
+      this.lastScrollY = currentScrollY;
     }
   },
   computed: {
@@ -118,6 +158,10 @@ export default {
         return 'lg:h-7 h-10 p-2 lg:p-0'; // Smaller logo when scrolled (height-based)
       }
       return 'h-14'; // Original logo size when at top (height-based)
+    },
+    // Compute header transform based on visibility
+    headerTransformClass() {
+      return this.isHeaderVisible ? 'translate-y-0' : '-translate-y-full';
     }
   },
   watch: {
@@ -126,6 +170,8 @@ export default {
       handler() {
         // Reset scroll state when changing routes
         this.isScrolled = false;
+        this.isHeaderVisible = true; // Always show header when navigating
+        this.lastScrollY = 0; // Reset scroll position
         
         // Check initial scroll position after route change
         this.$nextTick(() => {
@@ -137,6 +183,8 @@ export default {
   mounted() {
     // Add scroll event listener
     window.addEventListener('scroll', this.handleScroll);
+    // Initialize scroll position
+    this.lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
     // Check initial scroll position
     this.handleScroll();
   },
@@ -156,9 +204,10 @@ export default {
     finalHeaderBgClass, 
     textColorClass, 
     headerPaddingClass,
-    'fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 lg:px-50 2xl:px-90 transition-all duration-300 ease-in-out'
+    headerTransformClass,
+    'fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out transform'
   ]">
-    <nav class="container mx-auto flex justify-between items-center" :class="isScrolled ? '' : 'min-h-[3rem] lg:min-h-[4rem]'">
+    <nav class="flex justify-between items-center px-4 sm:px-6 lg:px-50 2xl:px-90 max-w-full" :class="isScrolled ? '' : 'min-h-[3rem] lg:min-h-[4rem]'">
         <RouterLink to="/" class="transition-all duration-300 ease-in-out flex items-center" @click="handleRouteClick('/')">
           <component :is="logoComponent" :class="[logoSizeClass, 'object-contain']" />
         </RouterLink>
@@ -226,57 +275,43 @@ export default {
     <!-- Mobile Menu Full Overlay -->
     <transition
       enter-active-class="transition ease-out duration-300 transform"
-      enter-from-class="opacity-0 translate-x-full"
-      enter-to-class="opacity-100 translate-x-0"
+      enter-from-class="opacity-0 -translate-y-full"
+      enter-to-class="opacity-100 translate-y-0"
       leave-active-class="transition ease-in duration-200 transform"
-      leave-from-class="opacity-100 translate-x-0"
-      leave-to-class="opacity-0 translate-x-full"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-full"
     >
-      <div v-if="isMobileMenuOpen" class="lg:hidden fixed inset-0 bg-white z-50 flex flex-col p-6">
+      <div v-if="isMobileMenuOpen" class="lg:hidden fixed inset-0 bg-white z-50 flex flex-col px-4 py-2 h-screen">
         <!-- Top Bar: Logo and Close Button -->
-        <div class="flex justify-between items-center mb-8">
+        <div class="flex justify-between items-center mb-10 ">
           <RouterLink to="/" @click="() => { toggleMobileMenu(); handleRouteClick('/'); }">
-            <BestiariLogoDark class="" />
+            <BestiariLogoDark class=" object-contain" />
           </RouterLink>
-          <button @click="toggleMobileMenu" class="text-redAction focus:outline-none">
+          <button @click="toggleMobileMenu" class="text-redAction focus:outline-none pt-2">
             <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
-
-        <!-- Navigation Links -->
-        <ul class="flex flex-col flex-grow overflow-y-auto">
-          <li class="border-b border-gray-200">
-            <RouterLink to="/" @click="() => { toggleMobileMenu(); handleRouteClick('/'); }" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
-              <span class="text-lg font-medium">Inicio</span>
-              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
-            </RouterLink>
-          </li>
-          <li class="border-b border-gray-200">
-            <RouterLink to="/about" @click="() => { toggleMobileMenu(); handleRouteClick('/about'); }" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
-              <span class="text-lg font-medium">Nosotros</span>
-              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
-            </RouterLink>
-          </li>
-          <li class="border-b border-gray-200">
-            <RouterLink to="/services" @click="() => { toggleMobileMenu(); handleRouteClick('/services'); }" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
-              <span class="text-lg font-medium">Servicios</span>
-              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
-            </RouterLink>
-          </li>
-          <li class="border-b border-gray-200">
-            <RouterLink to="/projects" @click="() => { toggleMobileMenu(); handleRouteClick('/projects'); }" class="flex justify-between items-center py-4 text-gray-700 hover:text-coolPurple w-full">
-              <span class="text-lg font-medium">Proyectos</span>
-              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
-            </RouterLink>
-          </li>
+    <div>
+ <!-- Navigation Links -->
+ <ul class="flex flex-col flex-grow overflow-y-auto bg-white h-full z-50">
+          <LinkMenuMobileWidget 
+            v-for="link in navigationLinks" 
+            :key="link.to"
+            :text="link.text"
+            :to="link.to"
+            @link-click="handleMobileLinkClick"
+          />
         </ul>
 
+    </div>
+       
+
         <!-- Call to Action Button at the bottom -->
-        <div class="mt-auto pt-6">
+        <div class="mt-auto pt-6 ">
           <RouterLink to="/contact" @click="() => { toggleMobileMenu(); handleRouteClick('/contact'); }" class="block w-full">
-            <div class="bg-redAction text-white px-6 py-3 text-center rounded-md font-medium text-lg">
+            <div class="bg-redAction text-white px-6 py-3 text-center  font-medium text-lg">
               Contáctanos
             </div>
           </RouterLink>

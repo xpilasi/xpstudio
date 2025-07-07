@@ -1,9 +1,27 @@
         <script>
+import { 
+  Clock, 
+  Users, 
+  ThumbsUp, 
+  Zap, 
+  Shield, 
+  Target, 
+  Rocket, 
+  Heart, 
+  Star,
+  CheckCircle,
+  TrendingUp,
+  Award,
+  Lightbulb,
+  Globe,
+  Smartphone
+} from 'lucide-vue-next'
+
 export default {
   name: 'BenefitsCard',
   props: {
     icon: {
-      type: [String, Object],
+      type: String,
       required: true
     },
     title: {
@@ -25,38 +43,67 @@ export default {
     descriptionColor: {
       type: String,
       default: 'text-gray-500'
+    },
+    iconBgColor: {
+      type: String,
+      default: 'bg-gray-200'
+    }
+  },
+  computed: {
+    iconComponent() {
+      // Mapeo de strings a componentes de iconos
+      const iconMap = {
+        'clock': Clock,
+        'users': Users,
+        'thumbs-up': ThumbsUp,
+        'zap': Zap,
+        'shield': Shield,
+        'target': Target,
+        'rocket': Rocket,
+        'heart': Heart,
+        'star': Star,
+        'check-circle': CheckCircle,
+        'trending-up': TrendingUp,
+        'award': Award,
+        'lightbulb': Lightbulb,
+        'globe': Globe,
+        'smartphone': Smartphone
+      }
+      
+      return iconMap[this.icon] || null
     }
   }
 }
 </script>
 
 <template>
-  <div class="backdrop-blur-sm shadow-lg   bg-red-400  p-6 transition-all duration-300 ease-in-out h-full flex flex-col items-center text-center max-w-sm mx-auto">
-    
-    <!-- Icon Container -->
-    <div class="mb-8 w-full ">
-      <!-- SVG Icon -->
+  <div class=" w-full  shadow-lg bg-white py-10 px-10 transition-all duration-300 ease-in-out flex flex-col items-center text-start mx-auto min-h-[300px]">
+    <div class="flex w-full">
+ <!-- Icon Container -->
+
+      <!-- Lucide Icon Component -->
       <component 
-        v-if="typeof icon === 'object'"
-        :is="icon" 
-        :class="[iconColor, 'w-16 h-16 lg:w-20 lg:h-20']"
+        v-if="iconComponent"
+        :is="iconComponent" 
+        :class="['text-coolPurple', 'w-10 h-10 lg:w-10 lg:h-10']"
       />
-      <!-- String Icon (emoji or text) -->
+      <!-- Fallback for unknown icons -->
       <span 
         v-else
-        :class="[iconColor, 'text-6xl lg:text-7xl font-bold']"
+        :class="['text-coolPurple', 'text-2xl font-bold']"
       >
-        {{ icon }}
+        ?
       </span>
+   
     </div>
-
+   
     <!-- Title -->
-    <h3 :class="[titleColor, ' mb-5 text-left leading-[32 px] font-bold text-3xl lg:text-4xl font-[\'Poppins\'] ']">
+    <h3 :class="[titleColor, 'mb-5 text-start leading-8 font-bold text-3xl text-gray-600 mt-5']">
       {{ title }}
     </h3>
 
     <!-- Description -->
-    <p :class="[descriptionColor, 'text-left text-md leading-sm  font-light leading-[28px] font-[\'Poppins\']  max-w-xs']">
+    <p :class="[descriptionColor, 'text-start text-sm leading-6 font-light max-w-xs']">
       {{ description }}
     </p>
 

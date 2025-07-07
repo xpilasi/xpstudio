@@ -61,7 +61,7 @@ export default {
 </script>
 
 <template>
-  <div :class="[maxWidth, 'mx-auto px-4 sm:px-6 lg:px-8 ']">
+  <div :class="[maxWidth, 'mx-auto  sm:px-6 lg:px-8 ']">
     <div :class="[spacing, alignmentClasses]">
       
       <!-- Header Text -->

@@ -76,8 +76,8 @@ export default {
     </div>
 
     <!-- Click Overlay -->
-    <div class="absolute inset-0 bg-coolPurple bg-opacity-50 flex items-center justify-center p-6 transition-opacity duration-300" :class="{ 'opacity-100': showOverlay, 'opacity-0 pointer-events-none': !showOverlay }">
-      <p class="text-white text-lg font-medium leading-relaxed text-center font-['Poppins']">
+    <div class="absolute inset-0 bg-coolPurple/70 backdrop-blur-md flex items-center justify-center p-6 transition-opacity duration-300" :class="{ 'opacity-100': showOverlay, 'opacity-0 pointer-events-none': !showOverlay }">
+      <p class="text-white text-lg font-medium leading-relaxed text-center font-['Poppins'] drop-shadow-lg">
         {{ descriptionText }}
       </p>
       
